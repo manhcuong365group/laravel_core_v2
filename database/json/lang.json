@@ -1,0 +1,1276 @@
+[
+    {
+        "id": 5,
+        "numb": 1,
+        "lang_define": "trangchu",
+        "langvi": "Trang chủ",
+        "langen": "Home"
+    },
+    {
+        "id": 6,
+        "numb": 2,
+        "lang_define": "gioithieu",
+        "langvi": "Giới thiệu",
+        "langen": "About us"
+    },
+    {
+        "id": 8,
+        "numb": 4,
+        "lang_define": "tintuc",
+        "langvi": "Tin tức",
+        "langen": "News"
+    },
+    {
+        "id": 9,
+        "numb": 5,
+        "lang_define": "lienhe",
+        "langvi": "Liên hệ",
+        "langen": "Contact us"
+    },
+    {
+        "id": 34,
+        "numb": 5,
+        "lang_define": "motasanpham",
+        "langvi": "Mô tả",
+        "langen": "Description"
+    },
+    {
+        "id": 46,
+        "numb": 2,
+        "lang_define": "sanpham",
+        "langvi": "Sản phẩm",
+        "langen": "Product"
+    },
+    {
+        "id": 31,
+        "numb": 2,
+        "lang_define": "luotxem",
+        "langvi": "Lượt xem",
+        "langen": "Views"
+    },
+    {
+        "id": 30,
+        "numb": 1,
+        "lang_define": "masp",
+        "langvi": "Mã sản phẩm",
+        "langen": "Product code"
+    },
+    {
+        "id": 26,
+        "numb": 2,
+        "lang_define": "ngaydang",
+        "langvi": "Ngày đăng",
+        "langen": "Date Submitted"
+    },
+    {
+        "id": 27,
+        "numb": 3,
+        "lang_define": "tintuckhac",
+        "langvi": "Tin tức khác",
+        "langen": "Other news"
+    },
+    {
+        "id": 40,
+        "numb": 1,
+        "lang_define": "hotrotructuyen",
+        "langvi": "Hổ trợ trực tuyến",
+        "langen": "Support Online"
+    },
+    {
+        "id": 50,
+        "numb": 1,
+        "lang_define": "dangonline",
+        "langvi": "Đang online",
+        "langen": "Online"
+    },
+    {
+        "id": 51,
+        "numb": 2,
+        "lang_define": "tongtruycap",
+        "langvi": "Tổng truy cập",
+        "langen": "Total"
+    },
+    {
+        "id": 52,
+        "numb": 3,
+        "lang_define": "diachi",
+        "langvi": "Địa chỉ",
+        "langen": "Address"
+    },
+    {
+        "id": 53,
+        "numb": 4,
+        "lang_define": "thongtinlienhe",
+        "langvi": "Thông tin liên hệ",
+        "langen": "Information Contact"
+    },
+    {
+        "id": 54,
+        "numb": 5,
+        "lang_define": "sodienthoai",
+        "langvi": "Số điện thoại",
+        "langen": "Phone"
+    },
+    {
+        "id": 55,
+        "numb": 1,
+        "lang_define": "hovaten",
+        "langvi": "Họ và tên",
+        "langen": "Full name"
+    },
+    {
+        "id": 56,
+        "numb": 2,
+        "lang_define": "chude",
+        "langvi": "Chủ đề",
+        "langen": "Subject"
+    },
+    {
+        "id": 57,
+        "numb": 3,
+        "lang_define": "noidung",
+        "langvi": "Nội dung",
+        "langen": "Content"
+    },
+    {
+        "id": 224,
+        "numb": 1,
+        "lang_define": "matkhaumoi",
+        "langvi": "Mật khẩu mới",
+        "langen": "New password"
+    },
+    {
+        "id": 225,
+        "numb": 1,
+        "lang_define": "nhaplaimatkhaumoi",
+        "langvi": "Nhập lại mật khẩu mới",
+        "langen": "Re-new password"
+    },
+    {
+        "id": 65,
+        "numb": 1,
+        "lang_define": "gui",
+        "langvi": "Gửi",
+        "langen": "Send"
+    },
+    {
+        "id": 66,
+        "numb": 2,
+        "lang_define": "nhaplai",
+        "langvi": "Nhập lại",
+        "langen": "Reset"
+    },
+    {
+        "id": 76,
+        "numb": 1,
+        "lang_define": "dangky",
+        "langvi": "Đăng ký",
+        "langen": "Sign Up"
+    },
+    {
+        "id": 78,
+        "numb": 1,
+        "lang_define": "khongtimthayketqua",
+        "langvi": "Không tìm thấy kết quả",
+        "langen": "No results found"
+    },
+    {
+        "id": 197,
+        "numb": 1,
+        "lang_define": "timduongdi",
+        "langvi": "Tìm đường đi",
+        "langen": "Find a way"
+    },
+    {
+        "id": 198,
+        "numb": 1,
+        "lang_define": "dinhkemtaptin",
+        "langvi": "Đính kèm file",
+        "langen": "Attachment file"
+    },
+    {
+        "id": 199,
+        "numb": 1,
+        "lang_define": "mabaomat",
+        "langvi": "Mã bảo mật",
+        "langen": "Security code"
+    },
+    {
+        "id": 86,
+        "numb": 1,
+        "lang_define": "dichvu",
+        "langvi": "Dịch vụ",
+        "langen": "Service"
+    },
+    {
+        "id": 87,
+        "numb": 1,
+        "lang_define": "timkiem",
+        "langvi": "Tìm kiếm",
+        "langen": "Search"
+    },
+    {
+        "id": 226,
+        "numb": 1,
+        "lang_define": "capnhat",
+        "langvi": "Cập nhật",
+        "langen": "Update"
+    },
+    {
+        "id": 227,
+        "numb": 1,
+        "lang_define": "boqua",
+        "langvi": "Bỏ qua",
+        "langen": "Cancel"
+    },
+    {
+        "id": 228,
+        "numb": 1,
+        "lang_define": "phuongxa",
+        "langvi": "Phường\/xã",
+        "langen": "Ward"
+    },
+    {
+        "id": 92,
+        "numb": 1,
+        "lang_define": "truycapngay",
+        "langvi": "Truy cập ngày",
+        "langen": "Today"
+    },
+    {
+        "id": 93,
+        "numb": 0,
+        "lang_define": "dangkynhantin",
+        "langvi": "Đăng ký nhận tin",
+        "langen": "Sign up to get information"
+    },
+    {
+        "id": 218,
+        "numb": 1,
+        "lang_define": "quanhuyen",
+        "langvi": "Quận\/huyện",
+        "langen": "District"
+    },
+    {
+        "id": 302,
+        "numb": 0,
+        "lang_define": "vuilongchonquanhuyen",
+        "langvi": "Vui lòng chọn quận huyện",
+        "langen": "Please select a district"
+    },
+    {
+        "id": 220,
+        "numb": 1,
+        "lang_define": "soluongqualon",
+        "langvi": "Số lượng không được lớn hơn 999",
+        "langen": "Quantity is not greater than 999"
+    },
+    {
+        "id": 96,
+        "numb": 1,
+        "lang_define": "hoten",
+        "langvi": "Họ tên",
+        "langen": "Full name"
+    },
+    {
+        "id": 97,
+        "numb": 1,
+        "lang_define": "chitietsanpham",
+        "langvi": "Chi tiết sản phẩm",
+        "langen": "Product Details"
+    },
+    {
+        "id": 99,
+        "numb": 1,
+        "lang_define": "xemthem",
+        "langvi": "Xem thêm",
+        "langen": "View more"
+    },
+    {
+        "id": 102,
+        "numb": 1,
+        "lang_define": "tuyendung",
+        "langvi": "Tuyển dụng",
+        "langen": "Recruitment"
+    },
+    {
+        "id": 108,
+        "numb": 1,
+        "lang_define": "gia",
+        "langvi": "Giá",
+        "langen": "Price"
+    },
+    {
+        "id": 221,
+        "numb": 1,
+        "lang_define": "thongtincanhan",
+        "langvi": "Thông tin cá nhân",
+        "langen": "Information personal"
+    },
+    {
+        "id": 193,
+        "numb": 1,
+        "lang_define": "thuvienanh",
+        "langvi": "Thư viện ảnh",
+        "langen": "Album"
+    },
+    {
+        "id": 194,
+        "numb": 1,
+        "lang_define": "sanphamnoibat",
+        "langvi": "Sản phẩm nổi bật",
+        "langen": "Featured products"
+    },
+    {
+        "id": 112,
+        "numb": 1,
+        "lang_define": "ketquatimkiem",
+        "langvi": "Kết quả tìm kiếm",
+        "langen": "Search results"
+    },
+    {
+        "id": 230,
+        "numb": 1,
+        "lang_define": "dathang",
+        "langvi": "Đặt hàng",
+        "langen": "Add to cart"
+    },
+    {
+        "id": 223,
+        "numb": 1,
+        "lang_define": "matkhaucu",
+        "langvi": "Mật khẩu cũ",
+        "langen": "Old password"
+    },
+    {
+        "id": 250,
+        "numb": 1,
+        "lang_define": "giohang",
+        "langvi": "Giỏ hàng",
+        "langen": "My cart"
+    },
+    {
+        "id": 212,
+        "numb": 1,
+        "lang_define": "hinh",
+        "langvi": "Hình",
+        "langen": "Picture"
+    },
+    {
+        "id": 213,
+        "numb": 1,
+        "lang_define": "soluong",
+        "langvi": "Số lượng",
+        "langen": "Number"
+    },
+    {
+        "id": 214,
+        "numb": 1,
+        "lang_define": "thanhtien",
+        "langvi": "Thành tiền",
+        "langen": "Amount"
+    },
+    {
+        "id": 216,
+        "numb": 1,
+        "lang_define": "tinhthanh",
+        "langvi": "Tỉnh\/thành phố",
+        "langen": "City"
+    },
+    {
+        "id": 128,
+        "numb": 1,
+        "lang_define": "nhaptukhoatimkiem",
+        "langvi": "Nhập từ khóa cần tìm...",
+        "langen": "Enter the keyword..."
+    },
+    {
+        "id": 205,
+        "numb": 1,
+        "lang_define": "tinhtrang",
+        "langvi": "Tình trạng",
+        "langen": "Status"
+    },
+    {
+        "id": 206,
+        "numb": 1,
+        "lang_define": "hethang",
+        "langvi": "Hết hàng",
+        "langen": "Out of stock"
+    },
+    {
+        "id": 207,
+        "numb": 1,
+        "lang_define": "dangcapnhat",
+        "langvi": "Đang cập nhật",
+        "langen": "Updating"
+    },
+    {
+        "id": 132,
+        "numb": 1,
+        "lang_define": "danhmucsanpham",
+        "langvi": "Danh mục sản phẩm",
+        "langen": "Product portfolio"
+    },
+    {
+        "id": 134,
+        "numb": 1,
+        "lang_define": "trongtuan",
+        "langvi": "Tuần",
+        "langen": "Week"
+    },
+    {
+        "id": 222,
+        "numb": 1,
+        "lang_define": "thaydoimatkhau",
+        "langvi": "Thay đổi mật khẩu",
+        "langen": "Change password"
+    },
+    {
+        "id": 137,
+        "numb": 1,
+        "lang_define": "thongketruycap",
+        "langvi": "Thống kê truy cập",
+        "langen": "Statistical access"
+    },
+    {
+        "id": 146,
+        "numb": 1,
+        "lang_define": "thongtinsanpham",
+        "langvi": "Thông tin sản phẩm",
+        "langen": "Products Information"
+    },
+    {
+        "id": 303,
+        "numb": 0,
+        "lang_define": "vuilongchonphuongxa",
+        "langvi": "Vui lòng chọn phường xã",
+        "langen": "Please select a ward"
+    },
+    {
+        "id": 156,
+        "numb": 1,
+        "lang_define": "traloi",
+        "langvi": "Trả lời",
+        "langen": "Answer"
+    },
+    {
+        "id": 157,
+        "numb": 1,
+        "lang_define": "huy",
+        "langvi": "Hủy",
+        "langen": "Cancel"
+    },
+    {
+        "id": 151,
+        "numb": 1,
+        "lang_define": "binhluanve",
+        "langvi": "bình luận về",
+        "langen": "comments about"
+    },
+    {
+        "id": 152,
+        "numb": 1,
+        "lang_define": "moibanthaoluan",
+        "langvi": "Mời bạn thảo luận. Vui lòng nhập Tiếng Việt có dấu, tối thiểu 10 ký tự.",
+        "langen": "Please discuss. Please enter Vietnamese accented, minimum 10 characters."
+    },
+    {
+        "id": 200,
+        "numb": 1,
+        "lang_define": "co",
+        "langvi": "Có",
+        "langen": "Have"
+    },
+    {
+        "id": 201,
+        "numb": 1,
+        "lang_define": "danhgia",
+        "langvi": "Đánh giá",
+        "langen": "Review"
+    },
+    {
+        "id": 202,
+        "numb": 1,
+        "lang_define": "xacnhan",
+        "langvi": "Xác nhận",
+        "langen": "Confirm"
+    },
+    {
+        "id": 203,
+        "numb": 1,
+        "lang_define": "sanphamcungloai",
+        "langvi": "Sản phẩm cùng loại",
+        "langen": "Product Similar"
+    },
+    {
+        "id": 204,
+        "numb": 1,
+        "lang_define": "conhang",
+        "langvi": "Còn hàng",
+        "langen": "Stocking"
+    },
+    {
+        "id": 165,
+        "numb": 1,
+        "lang_define": "thanhtoan",
+        "langvi": "Thanh toán",
+        "langen": "Pay"
+    },
+    {
+        "id": 167,
+        "numb": 1,
+        "lang_define": "chonvideo",
+        "langvi": "Chọn video",
+        "langen": "Choose video"
+    },
+    {
+        "id": 168,
+        "numb": 1,
+        "lang_define": "slogandangkynhantin",
+        "langvi": "Để lại thông tin để nhận tin tức mới nhất từ chúng tôi",
+        "langen": "Leave information to receive the latest news from us"
+    },
+    {
+        "id": 208,
+        "numb": 1,
+        "lang_define": "giamoi",
+        "langvi": "Giá mới",
+        "langen": "New price"
+    },
+    {
+        "id": 209,
+        "numb": 1,
+        "lang_define": "giacu",
+        "langvi": "Giá cũ",
+        "langen": "Old price"
+    },
+    {
+        "id": 171,
+        "numb": 1,
+        "lang_define": "binhluan",
+        "langvi": "Bình luận",
+        "langen": "Comment"
+    },
+    {
+        "id": 172,
+        "numb": 1,
+        "lang_define": "baivietkhac",
+        "langvi": "Bài viết khác",
+        "langen": "Other news"
+    },
+    {
+        "id": 174,
+        "numb": 1,
+        "lang_define": "banmuonxoasanphamnay",
+        "langvi": "Bạn muốn xóa sản phẩm này khỏi giỏ hàng ? ",
+        "langen": "Do you want to remove this product from your shopping cart?"
+    },
+    {
+        "id": 176,
+        "numb": 1,
+        "lang_define": "soluongkhongnhohonkhong",
+        "langvi": "Số lượng đặt mua không được nhỏ hơn 0",
+        "langen": "Order quantity must not be less than 0"
+    },
+    {
+        "id": 178,
+        "numb": 1,
+        "lang_define": "muatiep",
+        "langvi": "Mua tiếp",
+        "langen": "Buy more"
+    },
+    {
+        "id": 179,
+        "numb": 1,
+        "lang_define": "xoatatca",
+        "langvi": "Xóa tất cả",
+        "langen": "Delete all"
+    },
+    {
+        "id": 181,
+        "numb": 1,
+        "lang_define": "kichthuoc",
+        "langvi": "Kích thước",
+        "langen": "Size"
+    },
+    {
+        "id": 183,
+        "numb": 1,
+        "lang_define": "dangnhap",
+        "langvi": "Đăng nhập",
+        "langen": "Login"
+    },
+    {
+        "id": 184,
+        "numb": 1,
+        "lang_define": "taikhoan",
+        "langvi": "Tài khoản",
+        "langen": "Username"
+    },
+    {
+        "id": 185,
+        "numb": 1,
+        "lang_define": "matkhau",
+        "langvi": "Mật khẩu",
+        "langen": "Password"
+    },
+    {
+        "id": 186,
+        "numb": 1,
+        "lang_define": "nhomatkhau",
+        "langvi": "Nhớ mật khẩu",
+        "langen": "Remember password"
+    },
+    {
+        "id": 187,
+        "numb": 1,
+        "lang_define": "quenmatkhau",
+        "langvi": "Quên mật khẩu",
+        "langen": "Forget password"
+    },
+    {
+        "id": 188,
+        "numb": 1,
+        "lang_define": "nhaplaimatkhau",
+        "langvi": "Nhập lại mật khẩu",
+        "langen": "Confirm password"
+    },
+    {
+        "id": 189,
+        "numb": 1,
+        "lang_define": "dienthoai",
+        "langvi": "Điện thoại",
+        "langen": "Phone"
+    },
+    {
+        "id": 190,
+        "numb": 1,
+        "lang_define": "banchuacotaikhoan",
+        "langvi": "Bạn chưa có tài khoản ",
+        "langen": "You don't have a account"
+    },
+    {
+        "id": 192,
+        "numb": 1,
+        "lang_define": "laymatkhau",
+        "langvi": "Lấy mật khẩu",
+        "langen": "Get password"
+    },
+    {
+        "id": 231,
+        "numb": 1,
+        "lang_define": "apdung",
+        "langvi": "Áp dụng",
+        "langen": "Apply"
+    },
+    {
+        "id": 232,
+        "numb": 1,
+        "lang_define": "phivanchuyen",
+        "langvi": "Phí vận chuyển",
+        "langen": " Transport fee"
+    },
+    {
+        "id": 296,
+        "numb": 0,
+        "lang_define": "tamtinh",
+        "langvi": "Tạm tính",
+        "langen": "Provisional"
+    },
+    {
+        "id": 234,
+        "numb": 1,
+        "lang_define": "tongtien",
+        "langvi": "Tổng tiền",
+        "langen": "Total price"
+    },
+    {
+        "id": 235,
+        "numb": 1,
+        "lang_define": "map",
+        "langvi": "Bản đồ",
+        "langen": "Map"
+    },
+    {
+        "id": 236,
+        "numb": 1,
+        "lang_define": "donhang",
+        "langvi": "Đơn hàng",
+        "langen": "Order"
+    },
+    {
+        "id": 237,
+        "numb": 1,
+        "lang_define": "lichsudonhang",
+        "langvi": "Lịch sử đơn hàng",
+        "langen": "Order history"
+    },
+    {
+        "id": 238,
+        "numb": 1,
+        "lang_define": "trangdau",
+        "langvi": "Trang đầu",
+        "langen": "First page"
+    },
+    {
+        "id": 239,
+        "numb": 1,
+        "lang_define": "trangcuoi",
+        "langvi": "Trang cuối",
+        "langen": "Last page"
+    },
+    {
+        "id": 240,
+        "numb": 1,
+        "lang_define": "trangbantruycapkhongtontai",
+        "langvi": "Trang bạn truy cập không tồn tại.",
+        "langen": "The page you visited does not exist."
+    },
+    {
+        "id": 241,
+        "numb": 1,
+        "lang_define": "vetrangchu",
+        "langvi": "Về trang chủ",
+        "langen": "Back to homepage"
+    },
+    {
+        "id": 242,
+        "numb": 1,
+        "lang_define": "chiase",
+        "langvi": "Chia sẻ",
+        "langen": "Share"
+    },
+    {
+        "id": 244,
+        "numb": 1,
+        "lang_define": "xoa",
+        "langvi": "Xóa",
+        "langen": "Delete"
+    },
+    {
+        "id": 245,
+        "numb": 1,
+        "lang_define": "mausac",
+        "langvi": "Màu sắc",
+        "langen": "Color"
+    },
+    {
+        "id": 247,
+        "numb": 1,
+        "lang_define": "thongtingiaohang",
+        "langvi": "Thông tin giao hàng",
+        "langen": "Shipment Details"
+    },
+    {
+        "id": 301,
+        "numb": 0,
+        "lang_define": "vuilongchontinhthanh",
+        "langvi": "Vui lòng chọn tỉnh thành",
+        "langen": "Please select a province"
+    },
+    {
+        "id": 253,
+        "numb": 1,
+        "lang_define": "yeucaukhac",
+        "langvi": "Yêu cầu khác (không bắt buộc)",
+        "langen": "Other (Optional)"
+    },
+    {
+        "id": 254,
+        "numb": 1,
+        "lang_define": "khongtontaisanphamtronggiohang",
+        "langvi": "Không tồn tại sản phẩm nào trong giỏ hàng !",
+        "langen": "No products in your shopping cart !"
+    },
+    {
+        "id": 256,
+        "numb": 1,
+        "lang_define": "giohangcuaban",
+        "langvi": "Giỏ hàng của bạn",
+        "langen": "Your cart"
+    },
+    {
+        "id": 257,
+        "numb": 1,
+        "lang_define": "vuilongchonsizevamau",
+        "langvi": "Vui lòng chọn size và màu !",
+        "langen": "Please select size and color !"
+    },
+    {
+        "id": 258,
+        "numb": 1,
+        "lang_define": "dangkytaiday",
+        "langvi": "Đăng ký",
+        "langen": "Sign up here"
+    },
+    {
+        "id": 259,
+        "numb": 1,
+        "lang_define": "nhaphoten",
+        "langvi": "Nhập họ tên của bạn",
+        "langen": "Enter your full name"
+    },
+    {
+        "id": 260,
+        "numb": 1,
+        "lang_define": "nhaptaikhoan",
+        "langvi": "Nhập tài khoản của bạn",
+        "langen": "Enter your account"
+    },
+    {
+        "id": 261,
+        "numb": 1,
+        "lang_define": "nhapmatkhau",
+        "langvi": "Nhập mật khẩu (5-15 ký tự)",
+        "langen": "Choose password (5-15 chars)"
+    },
+    {
+        "id": 262,
+        "numb": 1,
+        "lang_define": "nhapemail",
+        "langvi": "Nhập địa chỉ email của bạn",
+        "langen": "Enter your email address"
+    },
+    {
+        "id": 263,
+        "numb": 1,
+        "lang_define": "nhapdienthoai",
+        "langvi": "Nhập số điện thoại",
+        "langen": "Enter your number phone"
+    },
+    {
+        "id": 264,
+        "numb": 1,
+        "lang_define": "nhapdiachi",
+        "langvi": "Nhập địa chỉ của bạn",
+        "langen": "Enter your address"
+    },
+    {
+        "id": 265,
+        "numb": 1,
+        "lang_define": "nhapngaysinh",
+        "langvi": "Nhập ngày sinh",
+        "langen": "Enter your birthday"
+    },
+    {
+        "id": 266,
+        "numb": 1,
+        "lang_define": "gioitinh",
+        "langvi": "Giới tính",
+        "langen": "Gender"
+    },
+    {
+        "id": 267,
+        "numb": 1,
+        "lang_define": "nam",
+        "langvi": "Nam",
+        "langen": "Male"
+    },
+    {
+        "id": 268,
+        "numb": 1,
+        "lang_define": "nu",
+        "langvi": "Nữ",
+        "langen": "Female"
+    },
+    {
+        "id": 269,
+        "numb": 1,
+        "lang_define": "kichhoat",
+        "langvi": "Kích hoạt",
+        "langen": "Active"
+    },
+    {
+        "id": 270,
+        "numb": 1,
+        "lang_define": "nhapmakichhoat",
+        "langvi": "Nhập mã kích hoạt",
+        "langen": "Enter your active code"
+    },
+    {
+        "id": 271,
+        "numb": 1,
+        "lang_define": "nhapmatkhaucu",
+        "langvi": "Nhập mật khẩu cũ",
+        "langen": "Enter old password"
+    },
+    {
+        "id": 272,
+        "numb": 1,
+        "lang_define": "nhapmatkhaumoi",
+        "langvi": "Nhập mật khẩu mới",
+        "langen": "Enter new password"
+    },
+    {
+        "id": 273,
+        "numb": 1,
+        "lang_define": "thich",
+        "langvi": "Thích",
+        "langen": "Like"
+    },
+    {
+        "id": 274,
+        "numb": 1,
+        "lang_define": "dathich",
+        "langvi": "Đã thích",
+        "langen": "Liked"
+    },
+    {
+        "id": 275,
+        "numb": 1,
+        "lang_define": "taithembinhluan",
+        "langvi": "Tải thêm bình luận",
+        "langen": "Get more comments"
+    },
+    {
+        "id": 276,
+        "numb": 1,
+        "lang_define": "trangke",
+        "langvi": "Trang kế",
+        "langen": "Next page"
+    },
+    {
+        "id": 277,
+        "numb": 1,
+        "lang_define": "trangtruoc",
+        "langvi": "Trang trước",
+        "langen": "Prev page"
+    },
+    {
+        "id": 279,
+        "numb": 0,
+        "lang_define": "hinhanh",
+        "langvi": "Hình ảnh",
+        "langen": "Image"
+    },
+    {
+        "id": 280,
+        "numb": 0,
+        "lang_define": "tensanpham",
+        "langvi": "Tên sản phẩm",
+        "langen": "Product name"
+    },
+    {
+        "id": 282,
+        "numb": 1,
+        "lang_define": "duong",
+        "langvi": "Đường phố",
+        "langen": "Street"
+    },
+    {
+        "id": 283,
+        "numb": 0,
+        "lang_define": "hinhthucthanhtoan",
+        "langvi": "Hình thức thanh toán",
+        "langen": "Payments"
+    },
+    {
+        "id": 284,
+        "numb": 0,
+        "lang_define": "vuilongnhaphoten",
+        "langvi": "Vui lòng nhập họ và tên",
+        "langen": "Please enter your first and last name"
+    },
+    {
+        "id": 285,
+        "numb": 0,
+        "lang_define": "vuilongnhapsodienthoai",
+        "langvi": "Vui lòng nhập số điện thoại",
+        "langen": "Please enter the phone number"
+    },
+    {
+        "id": 286,
+        "numb": 0,
+        "lang_define": "vuilongnhapdiachi",
+        "langvi": "Vui lòng nhập địa chỉ",
+        "langen": "Please enter your address"
+    },
+    {
+        "id": 287,
+        "numb": 0,
+        "lang_define": "vuilongnhapdiachiemail",
+        "langvi": "Vui lòng nhập địa chỉ email",
+        "langen": "Please enter email address"
+    },
+    {
+        "id": 288,
+        "numb": 0,
+        "lang_define": "vuilongnhapchude",
+        "langvi": "Vui lòng nhập chủ đề",
+        "langen": "Please enter subject"
+    },
+    {
+        "id": 289,
+        "numb": 0,
+        "lang_define": "vuilongnhapnoidung",
+        "langvi": "Vui lòng nhập nội dung",
+        "langen": "Please enter content"
+    },
+    {
+        "id": 290,
+        "numb": 0,
+        "lang_define": "chon",
+        "langvi": "Chọn",
+        "langen": "Choose"
+    },
+    {
+        "id": 292,
+        "numb": 0,
+        "lang_define": "tieptucmuahang",
+        "langvi": "Tiếp tục mua hàng",
+        "langen": "Continue shopping"
+    },
+    {
+        "id": 293,
+        "numb": 0,
+        "lang_define": "trongthang",
+        "langvi": "Tháng",
+        "langen": "Month"
+    },
+    {
+        "id": 294,
+        "numb": 0,
+        "lang_define": "chinhsach",
+        "langvi": "Chính sách",
+        "langen": "Policies"
+    },
+    {
+        "id": 295,
+        "numb": 0,
+        "lang_define": "thuonghieu",
+        "langvi": "Thương hiệu",
+        "langen": "Brand"
+    },
+    {
+        "id": 304,
+        "numb": 0,
+        "lang_define": "vuilongnhaptaikhoan",
+        "langvi": "Vui lòng nhập tài khoản",
+        "langen": "Please enter an account"
+    },
+    {
+        "id": 305,
+        "numb": 0,
+        "lang_define": "vuilongnhapmatkhau",
+        "langvi": "Vui lòng nhập mật khẩu",
+        "langen": "Please enter a password"
+    },
+    {
+        "id": 306,
+        "numb": 0,
+        "lang_define": "vuilongnhaplaimatkhau",
+        "langvi": "Vui lòng nhập lại mật khẩu",
+        "langen": "Please enter the password again"
+    },
+    {
+        "id": 307,
+        "numb": 0,
+        "lang_define": "vuilongnhapngaysinh",
+        "langvi": "Vui lòng nhập ngày sinh",
+        "langen": "Please enter your birthday"
+    },
+    {
+        "id": 308,
+        "numb": 0,
+        "lang_define": "ngaysinh",
+        "langvi": "Ngày sinh",
+        "langen": "Date of birth"
+    },
+    {
+        "id": 312,
+        "numb": 0,
+        "lang_define": "vuilongnhapmakichhoat",
+        "langvi": "Vui lòng nhập mã kích hoạt",
+        "langen": "Please enter the activation code"
+    },
+    {
+        "id": 315,
+        "numb": 0,
+        "lang_define": "dangxuat",
+        "langvi": "Đăng xuất",
+        "langen": "Logout"
+    },
+    {
+        "id": 316,
+        "numb": 0,
+        "lang_define": "homnay",
+        "langvi": "Hôm nay",
+        "langen": "Today"
+    },
+    {
+        "id": 317,
+        "numb": 0,
+        "lang_define": "homqua",
+        "langvi": "Hôm qua",
+        "langen": "Yesterday"
+    },
+    {
+        "id": 318,
+        "numb": 0,
+        "lang_define": "thongbao",
+        "langvi": "Thông báo",
+        "langen": "Notify"
+    },
+    {
+        "id": 319,
+        "numb": 0,
+        "lang_define": "thoat",
+        "langvi": "Thoát",
+        "langen": "Exit"
+    },
+    {
+        "id": 320,
+        "numb": 0,
+        "lang_define": "chuanhaptukhoatimkiem",
+        "langvi": "Chưa nhập từ khóa tìm kiếm",
+        "langen": "No search keywords entered"
+    },
+    {
+        "id": 322,
+        "numb": 0,
+        "lang_define": "capnhatthongtin",
+        "langvi": "Cập nhật thông tin",
+        "langen": "Update information"
+    },
+    {
+        "id": 323,
+        "numb": 0,
+        "lang_define": "noidungdangcapnhat",
+        "langvi": "Nội dung đang cập nhật",
+        "langen": "Content is updating"
+    },
+    {
+        "id": 325,
+        "numb": 0,
+        "lang_define": "dangcapnhatdulieu",
+        "langvi": "Đang cập nhật dữ liệu",
+        "langen": "Updating data"
+    },
+    {
+        "id": 326,
+        "numb": 0,
+        "lang_define": "donhangkhonghoplevuilongthulaisau",
+        "langvi": "Đơn hàng không hợp lệ. Vui lòng thử lại sau",
+        "langen": "Invalid order. Please try again later"
+    },
+    {
+        "id": 327,
+        "numb": 0,
+        "lang_define": "chuachonhinhthucthanhtoan",
+        "langvi": "Chưa chọn hình thức thanh toán",
+        "langen": "No payment method has been selected"
+    },
+    {
+        "id": 328,
+        "numb": 0,
+        "lang_define": "hotenkhongduoctrong",
+        "langvi": "Họ tên không được trống",
+        "langen": "Full name cannot be empty"
+    },
+    {
+        "id": 329,
+        "numb": 0,
+        "lang_define": "sodienthoaikhongduoctrong",
+        "langvi": "Số điện thoại không được trống",
+        "langen": "Phone number cannot be empty"
+    },
+    {
+        "id": 330,
+        "numb": 0,
+        "lang_define": "sodienthoaikhonghople",
+        "langvi": "Số điện thoại không hợp lệ",
+        "langen": "invalid phone number"
+    },
+    {
+        "id": 331,
+        "numb": 0,
+        "lang_define": "chuachontinhthanhpho",
+        "langvi": "Chưa chọn tỉnh\/thành phố",
+        "langen": "No province\/city has been selected"
+    },
+    {
+        "id": 332,
+        "numb": 0,
+        "lang_define": "chuachonquanhuyen",
+        "langvi": "Chưa chọn quận\/huyện",
+        "langen": "No district has been selected yet"
+    },
+    {
+        "id": 333,
+        "numb": 0,
+        "lang_define": "chuachonphuongxa",
+        "langvi": "Chưa chọn phường\/xã",
+        "langen": "Ward\/commune has not been selected"
+    },
+    {
+        "id": 334,
+        "numb": 0,
+        "lang_define": "diachikhongduoctrong",
+        "langvi": "Địa chỉ không được trống",
+        "langen": "Address cannot be empty"
+    },
+    {
+        "id": 335,
+        "numb": 0,
+        "lang_define": "emailkhongduoctrong",
+        "langvi": "Email không được trống",
+        "langen": "Email cannot be empty"
+    },
+    {
+        "id": 336,
+        "numb": 0,
+        "lang_define": "emailkhonghople",
+        "langvi": "Email không hợp lệ",
+        "langen": "Invalid email"
+    },
+    {
+        "id": 337,
+        "numb": 0,
+        "lang_define": "thongtindonhangdaduocguithanhcong",
+        "langvi": "Thông tin đơn hàng đã được gửi thành công.",
+        "langen": "Order information has been sent successfully."
+    },
+    {
+        "id": 338,
+        "numb": 0,
+        "lang_define": "chudekhongduoctrong",
+        "langvi": "Chủ để không được trống",
+        "langen": "Subject cannot be empty"
+    },
+    {
+        "id": 339,
+        "numb": 0,
+        "lang_define": "noidungkhongduoctrong",
+        "langvi": "Nội dung không được trống",
+        "langen": "Content cannot be empty"
+    },
+    {
+        "id": 340,
+        "numb": 0,
+        "lang_define": "guilienhethatbai",
+        "langvi": "Gửi liên hệ thất bại. Vui lòng thử lại sau.",
+        "langen": "Contact sending failed. Please try again later."
+    },
+    {
+        "id": 341,
+        "numb": 0,
+        "lang_define": "guilienhethanhcong",
+        "langvi": "Gửi liên hệ thành công",
+        "langen": "Contact sent successfully"
+    },
+    {
+        "id": 342,
+        "numb": 0,
+        "lang_define": "dangkynhantinthanhcong",
+        "langvi": "Đăng ký nhận tin thành công. Chúng tôi sẽ liên hệ với bạn sớm.",
+        "langen": "Registered to receive news successfully. We will contact you soon."
+    },
+    {
+        "id": 343,
+        "numb": 0,
+        "lang_define": "dangkynhantinthatbai",
+        "langvi": "Đăng ký nhận tin thất bại. Vui lòng thử lại sau.",
+        "langen": "Signing up to receive news failed. Please try again later."
+    }
+]

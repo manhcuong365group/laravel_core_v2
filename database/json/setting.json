@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "options": "{\"typeslide\":\"3\",\"display_name_slide\":\"1\",\"address\":\"\\u0110\\u01b0\\u1eddng s\\u1ed1 3, P.Hi\\u1ec7p B\\u00ecnh, Tp.H\\u1ed3 Ch\\u00ed Minh (g\\u1ea7n KDT V\\u1ea1n Ph\\u00fac)\",\"email\":\"marketing@365group.com.vn\",\"hotline\":\"0363 365 365\",\"phone\":\"1900 9365\",\"zalo\":\"https:\\\/\\\/zalo.me\\\/1637241084134305408\",\"website\":\"https:\\\/\\\/cleanbro.vn\",\"fanpage\":\"\",\"coords\":\"\",\"link_googlemaps\":\"\",\"worktime\":\"\",\"coords_iframe\":\"<iframe src=\\\"https:\\\/\\\/www.google.com\\\/maps\\\/embed?pb=!1m18!1m12!1m3!1d4796.156021551723!2d106.71108117586499!3d10.844829589308105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175291039d5574d%3A0xd2a166982aa6583f!2s365%20Group!5e1!3m2!1svi!2s!4v1756443364639!5m2!1svi!2s\\\" width=\\\"600\\\" height=\\\"450\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\" referrerpolicy=\\\"no-referrer-when-downgrade\\\"><\\\/iframe>\",\"oaidzalo\":\"https:\\\/\\\/zalo.me\\\/1637241084134305408\"}",
+        "mastertool": "",
+        "headjs": "&lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({&#039;gtm.start&#039;:\r\nnew Date().getTime(),event:&#039;gtm.js&#039;});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!=&#039;dataLayer&#039;?&#039;&amp;l=&#039;+l:&#039;&#039;;j.async=true;j.src=\r\n&#039;https:\/\/www.googletagmanager.com\/gtm.js?id=&#039;+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,&#039;script&#039;,&#039;dataLayer&#039;,&#039;GTM-K3RPZNLZ&#039;);&lt;\/script&gt;",
+        "bodyjs": "",
+        "namevi": "Cleanbro Việt Nam - Thương hiệu gạt mưa ô tô cao cấp ",
+        "nameen": "",
+        "addressvi": "",
+        "addressen": "",
+        "analytics": "&lt;script async src=&quot;https:\/\/www.googletagmanager.com\/gtag\/js?id=G-BM833970ZR&quot;&gt;&lt;\/script&gt;\r\n&lt;script&gt;\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag(&#039;js&#039;, new Date());\r\n\r\n  gtag(&#039;config&#039;, &#039;G-BM833970ZR&#039;);\r\n&lt;\/script&gt;"
+    }
+]

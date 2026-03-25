@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "namevi": "Mới đặt",
+        "nameen": "New order",
+        "class_order": "text-primary"
+    },
+    {
+        "id": 2,
+        "namevi": "Đã xác nhận",
+        "nameen": "Confirmed order",
+        "class_order": "text-info"
+    },
+    {
+        "id": 3,
+        "namevi": "Đang giao hàng",
+        "nameen": "Delivering order",
+        "class_order": "text-warning"
+    },
+    {
+        "id": 4,
+        "namevi": "Đã giao",
+        "nameen": "Delivered order",
+        "class_order": "text-success"
+    },
+    {
+        "id": 5,
+        "namevi": "Đã hủy",
+        "nameen": "Canceled order",
+        "class_order": "text-danger"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Nhóm quyền cấp cao",
+        "numb": 1,
+        "status": "hienthi",
+        "date_created": 1609288475,
+        "date_updated": 1641188843
+    },
+    {
+        "id": 2,
+        "name": "Nhóm quyền cơ bản",
+        "numb": 2,
+        "status": "hienthi",
+        "date_created": 1609288536,
+        "date_updated": 1757563491
+    }
+]

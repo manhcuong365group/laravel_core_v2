@@ -1,0 +1,1207 @@
+[
+    {
+        "id": 1744,
+        "id_permission_group": 1,
+        "permission": "static_update_gioi-thieu"
+    },
+    {
+        "id": 1745,
+        "id_permission_group": 1,
+        "permission": "static_update_gioi-thieu-san-pham"
+    },
+    {
+        "id": 1741,
+        "id_permission_group": 1,
+        "permission": "newsletter_add_dangkytuyendung"
+    },
+    {
+        "id": 1742,
+        "id_permission_group": 1,
+        "permission": "newsletter_edit_dangkytuyendung"
+    },
+    {
+        "id": 1743,
+        "id_permission_group": 1,
+        "permission": "newsletter_delete_dangkytuyendung"
+    },
+    {
+        "id": 1740,
+        "id_permission_group": 1,
+        "permission": "newsletter_man_dangkytuyendung"
+    },
+    {
+        "id": 1738,
+        "id_permission_group": 1,
+        "permission": "newsletter_edit_dangkybaogia"
+    },
+    {
+        "id": 1739,
+        "id_permission_group": 1,
+        "permission": "newsletter_delete_dangkybaogia"
+    },
+    {
+        "id": 1736,
+        "id_permission_group": 1,
+        "permission": "newsletter_man_dangkybaogia"
+    },
+    {
+        "id": 1737,
+        "id_permission_group": 1,
+        "permission": "newsletter_add_dangkybaogia"
+    },
+    {
+        "id": 1735,
+        "id_permission_group": 1,
+        "permission": "newsletter_delete_dangkynhantin"
+    },
+    {
+        "id": 1732,
+        "id_permission_group": 1,
+        "permission": "newsletter_man_dangkynhantin"
+    },
+    {
+        "id": 1733,
+        "id_permission_group": 1,
+        "permission": "newsletter_add_dangkynhantin"
+    },
+    {
+        "id": 1734,
+        "id_permission_group": 1,
+        "permission": "newsletter_edit_dangkynhantin"
+    },
+    {
+        "id": 1731,
+        "id_permission_group": 1,
+        "permission": "tags_delete_tuyen-dung"
+    },
+    {
+        "id": 1730,
+        "id_permission_group": 1,
+        "permission": "tags_edit_tuyen-dung"
+    },
+    {
+        "id": 1729,
+        "id_permission_group": 1,
+        "permission": "tags_add_tuyen-dung"
+    },
+    {
+        "id": 1728,
+        "id_permission_group": 1,
+        "permission": "tags_man_tuyen-dung"
+    },
+    {
+        "id": 1727,
+        "id_permission_group": 1,
+        "permission": "tags_delete_dich-vu"
+    },
+    {
+        "id": 1726,
+        "id_permission_group": 1,
+        "permission": "tags_edit_dich-vu"
+    },
+    {
+        "id": 1725,
+        "id_permission_group": 1,
+        "permission": "tags_add_dich-vu"
+    },
+    {
+        "id": 1724,
+        "id_permission_group": 1,
+        "permission": "tags_man_dich-vu"
+    },
+    {
+        "id": 1723,
+        "id_permission_group": 1,
+        "permission": "tags_delete_tin-tuc"
+    },
+    {
+        "id": 1722,
+        "id_permission_group": 1,
+        "permission": "tags_edit_tin-tuc"
+    },
+    {
+        "id": 2377,
+        "id_permission_group": 2,
+        "permission": "photo_delete_photo_social"
+    },
+    {
+        "id": 2376,
+        "id_permission_group": 2,
+        "permission": "photo_edit_photo_social"
+    },
+    {
+        "id": 2375,
+        "id_permission_group": 2,
+        "permission": "photo_add_photo_social"
+    },
+    {
+        "id": 2374,
+        "id_permission_group": 2,
+        "permission": "photo_man_photo_social"
+    },
+    {
+        "id": 2373,
+        "id_permission_group": 2,
+        "permission": "photo_delete_photo_slide"
+    },
+    {
+        "id": 2372,
+        "id_permission_group": 2,
+        "permission": "photo_edit_photo_slide"
+    },
+    {
+        "id": 2371,
+        "id_permission_group": 2,
+        "permission": "photo_add_photo_slide"
+    },
+    {
+        "id": 2370,
+        "id_permission_group": 2,
+        "permission": "photo_man_photo_slide"
+    },
+    {
+        "id": 2369,
+        "id_permission_group": 2,
+        "permission": "photo_delete_photo_banner-media"
+    },
+    {
+        "id": 2368,
+        "id_permission_group": 2,
+        "permission": "photo_edit_photo_banner-media"
+    },
+    {
+        "id": 1721,
+        "id_permission_group": 1,
+        "permission": "tags_add_tin-tuc"
+    },
+    {
+        "id": 1720,
+        "id_permission_group": 1,
+        "permission": "tags_man_tin-tuc"
+    },
+    {
+        "id": 1719,
+        "id_permission_group": 1,
+        "permission": "tags_delete_san-pham"
+    },
+    {
+        "id": 1718,
+        "id_permission_group": 1,
+        "permission": "tags_edit_san-pham"
+    },
+    {
+        "id": 1717,
+        "id_permission_group": 1,
+        "permission": "tags_add_san-pham"
+    },
+    {
+        "id": 1716,
+        "id_permission_group": 1,
+        "permission": "tags_man_san-pham"
+    },
+    {
+        "id": 1715,
+        "id_permission_group": 1,
+        "permission": "order_delete"
+    },
+    {
+        "id": 1714,
+        "id_permission_group": 1,
+        "permission": "order_edit"
+    },
+    {
+        "id": 1713,
+        "id_permission_group": 1,
+        "permission": "order_man"
+    },
+    {
+        "id": 1712,
+        "id_permission_group": 1,
+        "permission": "photo_delete_photo_doitac"
+    },
+    {
+        "id": 1711,
+        "id_permission_group": 1,
+        "permission": "photo_edit_photo_doitac"
+    },
+    {
+        "id": 1710,
+        "id_permission_group": 1,
+        "permission": "photo_add_photo_doitac"
+    },
+    {
+        "id": 1709,
+        "id_permission_group": 1,
+        "permission": "photo_man_photo_doitac"
+    },
+    {
+        "id": 1708,
+        "id_permission_group": 1,
+        "permission": "photo_delete_photo_video"
+    },
+    {
+        "id": 1707,
+        "id_permission_group": 1,
+        "permission": "photo_edit_photo_video"
+    },
+    {
+        "id": 1706,
+        "id_permission_group": 1,
+        "permission": "photo_add_photo_video"
+    },
+    {
+        "id": 1705,
+        "id_permission_group": 1,
+        "permission": "photo_man_photo_video"
+    },
+    {
+        "id": 1704,
+        "id_permission_group": 1,
+        "permission": "photo_delete_photo_social"
+    },
+    {
+        "id": 1703,
+        "id_permission_group": 1,
+        "permission": "photo_edit_photo_social"
+    },
+    {
+        "id": 1702,
+        "id_permission_group": 1,
+        "permission": "photo_add_photo_social"
+    },
+    {
+        "id": 1701,
+        "id_permission_group": 1,
+        "permission": "photo_man_photo_social"
+    },
+    {
+        "id": 1698,
+        "id_permission_group": 1,
+        "permission": "photo_add_photo_slide-product"
+    },
+    {
+        "id": 1700,
+        "id_permission_group": 1,
+        "permission": "photo_delete_photo_slide-product"
+    },
+    {
+        "id": 1699,
+        "id_permission_group": 1,
+        "permission": "photo_edit_photo_slide-product"
+    },
+    {
+        "id": 1697,
+        "id_permission_group": 1,
+        "permission": "photo_man_photo_slide-product"
+    },
+    {
+        "id": 1696,
+        "id_permission_group": 1,
+        "permission": "photo_delete_photo_slide"
+    },
+    {
+        "id": 1694,
+        "id_permission_group": 1,
+        "permission": "photo_add_photo_slide"
+    },
+    {
+        "id": 1695,
+        "id_permission_group": 1,
+        "permission": "photo_edit_photo_slide"
+    },
+    {
+        "id": 1693,
+        "id_permission_group": 1,
+        "permission": "photo_man_photo_slide"
+    },
+    {
+        "id": 1692,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_popup"
+    },
+    {
+        "id": 1691,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_video"
+    },
+    {
+        "id": 1689,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_watermark"
+    },
+    {
+        "id": 1690,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_watermark-news"
+    },
+    {
+        "id": 1688,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_favicon"
+    },
+    {
+        "id": 1687,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_logo"
+    },
+    {
+        "id": 1686,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_banner"
+    },
+    {
+        "id": 1685,
+        "id_permission_group": 1,
+        "permission": "photo_photo_static_background"
+    },
+    {
+        "id": 1684,
+        "id_permission_group": 1,
+        "permission": "news_delete_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 1683,
+        "id_permission_group": 1,
+        "permission": "news_edit_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 1682,
+        "id_permission_group": 1,
+        "permission": "news_add_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 1681,
+        "id_permission_group": 1,
+        "permission": "news_man_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 1680,
+        "id_permission_group": 1,
+        "permission": "news_delete_chinh-sach"
+    },
+    {
+        "id": 1679,
+        "id_permission_group": 1,
+        "permission": "news_edit_chinh-sach"
+    },
+    {
+        "id": 1678,
+        "id_permission_group": 1,
+        "permission": "news_add_chinh-sach"
+    },
+    {
+        "id": 1677,
+        "id_permission_group": 1,
+        "permission": "news_man_chinh-sach"
+    },
+    {
+        "id": 1676,
+        "id_permission_group": 1,
+        "permission": "news_delete_tuyen-dung"
+    },
+    {
+        "id": 1675,
+        "id_permission_group": 1,
+        "permission": "news_edit_tuyen-dung"
+    },
+    {
+        "id": 1674,
+        "id_permission_group": 1,
+        "permission": "news_add_tuyen-dung"
+    },
+    {
+        "id": 1673,
+        "id_permission_group": 1,
+        "permission": "news_man_tuyen-dung"
+    },
+    {
+        "id": 1672,
+        "id_permission_group": 1,
+        "permission": "news_delete_photo_tin-tuc"
+    },
+    {
+        "id": 1671,
+        "id_permission_group": 1,
+        "permission": "news_edit_photo_tin-tuc"
+    },
+    {
+        "id": 1670,
+        "id_permission_group": 1,
+        "permission": "news_add_photo_tin-tuc"
+    },
+    {
+        "id": 1669,
+        "id_permission_group": 1,
+        "permission": "news_man_photo_tin-tuc"
+    },
+    {
+        "id": 1668,
+        "id_permission_group": 1,
+        "permission": "news_delete_tin-tuc"
+    },
+    {
+        "id": 1667,
+        "id_permission_group": 1,
+        "permission": "news_edit_tin-tuc"
+    },
+    {
+        "id": 1666,
+        "id_permission_group": 1,
+        "permission": "news_add_tin-tuc"
+    },
+    {
+        "id": 1665,
+        "id_permission_group": 1,
+        "permission": "news_man_tin-tuc"
+    },
+    {
+        "id": 1664,
+        "id_permission_group": 1,
+        "permission": "news_delete_sub_tin-tuc"
+    },
+    {
+        "id": 1663,
+        "id_permission_group": 1,
+        "permission": "news_edit_sub_tin-tuc"
+    },
+    {
+        "id": 1662,
+        "id_permission_group": 1,
+        "permission": "news_add_sub_tin-tuc"
+    },
+    {
+        "id": 1661,
+        "id_permission_group": 1,
+        "permission": "news_man_sub_tin-tuc"
+    },
+    {
+        "id": 1660,
+        "id_permission_group": 1,
+        "permission": "news_delete_item_tin-tuc"
+    },
+    {
+        "id": 1659,
+        "id_permission_group": 1,
+        "permission": "news_edit_item_tin-tuc"
+    },
+    {
+        "id": 1658,
+        "id_permission_group": 1,
+        "permission": "news_add_item_tin-tuc"
+    },
+    {
+        "id": 1657,
+        "id_permission_group": 1,
+        "permission": "news_man_item_tin-tuc"
+    },
+    {
+        "id": 1656,
+        "id_permission_group": 1,
+        "permission": "news_delete_cat_tin-tuc"
+    },
+    {
+        "id": 1655,
+        "id_permission_group": 1,
+        "permission": "news_edit_cat_tin-tuc"
+    },
+    {
+        "id": 1654,
+        "id_permission_group": 1,
+        "permission": "news_add_cat_tin-tuc"
+    },
+    {
+        "id": 1651,
+        "id_permission_group": 1,
+        "permission": "news_edit_list_tin-tuc"
+    },
+    {
+        "id": 1652,
+        "id_permission_group": 1,
+        "permission": "news_delete_list_tin-tuc"
+    },
+    {
+        "id": 1653,
+        "id_permission_group": 1,
+        "permission": "news_man_cat_tin-tuc"
+    },
+    {
+        "id": 1650,
+        "id_permission_group": 1,
+        "permission": "news_add_list_tin-tuc"
+    },
+    {
+        "id": 1649,
+        "id_permission_group": 1,
+        "permission": "news_man_list_tin-tuc"
+    },
+    {
+        "id": 1648,
+        "id_permission_group": 1,
+        "permission": "product_delete_photo_thu-vien-anh"
+    },
+    {
+        "id": 1646,
+        "id_permission_group": 1,
+        "permission": "product_add_photo_thu-vien-anh"
+    },
+    {
+        "id": 1647,
+        "id_permission_group": 1,
+        "permission": "product_edit_photo_thu-vien-anh"
+    },
+    {
+        "id": 1645,
+        "id_permission_group": 1,
+        "permission": "product_man_photo_thu-vien-anh"
+    },
+    {
+        "id": 1644,
+        "id_permission_group": 1,
+        "permission": "product_delete_thu-vien-anh"
+    },
+    {
+        "id": 1643,
+        "id_permission_group": 1,
+        "permission": "product_edit_thu-vien-anh"
+    },
+    {
+        "id": 1642,
+        "id_permission_group": 1,
+        "permission": "product_add_thu-vien-anh"
+    },
+    {
+        "id": 1641,
+        "id_permission_group": 1,
+        "permission": "product_man_thu-vien-anh"
+    },
+    {
+        "id": 1640,
+        "id_permission_group": 1,
+        "permission": "export_man_san-pham"
+    },
+    {
+        "id": 1639,
+        "id_permission_group": 1,
+        "permission": "import_deleteImages_san-pham"
+    },
+    {
+        "id": 1638,
+        "id_permission_group": 1,
+        "permission": "import_editImages_san-pham"
+    },
+    {
+        "id": 1637,
+        "id_permission_group": 1,
+        "permission": "import_man_san-pham"
+    },
+    {
+        "id": 1636,
+        "id_permission_group": 1,
+        "permission": "product_delete_photo_san-pham"
+    },
+    {
+        "id": 1635,
+        "id_permission_group": 1,
+        "permission": "product_edit_photo_san-pham"
+    },
+    {
+        "id": 1634,
+        "id_permission_group": 1,
+        "permission": "product_add_photo_san-pham"
+    },
+    {
+        "id": 1633,
+        "id_permission_group": 1,
+        "permission": "product_man_photo_san-pham"
+    },
+    {
+        "id": 1632,
+        "id_permission_group": 1,
+        "permission": "comment_man_product_san-pham"
+    },
+    {
+        "id": 1631,
+        "id_permission_group": 1,
+        "permission": "product_delete_san-pham"
+    },
+    {
+        "id": 1630,
+        "id_permission_group": 1,
+        "permission": "product_edit_san-pham"
+    },
+    {
+        "id": 1629,
+        "id_permission_group": 1,
+        "permission": "product_add_san-pham"
+    },
+    {
+        "id": 1628,
+        "id_permission_group": 1,
+        "permission": "product_man_san-pham"
+    },
+    {
+        "id": 1627,
+        "id_permission_group": 1,
+        "permission": "product_delete_size_san-pham"
+    },
+    {
+        "id": 1626,
+        "id_permission_group": 1,
+        "permission": "product_edit_size_san-pham"
+    },
+    {
+        "id": 1625,
+        "id_permission_group": 1,
+        "permission": "product_add_size_san-pham"
+    },
+    {
+        "id": 1624,
+        "id_permission_group": 1,
+        "permission": "product_man_size_san-pham"
+    },
+    {
+        "id": 1623,
+        "id_permission_group": 1,
+        "permission": "product_delete_color_san-pham"
+    },
+    {
+        "id": 1622,
+        "id_permission_group": 1,
+        "permission": "product_edit_color_san-pham"
+    },
+    {
+        "id": 1621,
+        "id_permission_group": 1,
+        "permission": "product_add_color_san-pham"
+    },
+    {
+        "id": 1620,
+        "id_permission_group": 1,
+        "permission": "product_man_color_san-pham"
+    },
+    {
+        "id": 1619,
+        "id_permission_group": 1,
+        "permission": "product_delete_brand_san-pham"
+    },
+    {
+        "id": 1618,
+        "id_permission_group": 1,
+        "permission": "product_edit_brand_san-pham"
+    },
+    {
+        "id": 1617,
+        "id_permission_group": 1,
+        "permission": "product_add_brand_san-pham"
+    },
+    {
+        "id": 1616,
+        "id_permission_group": 1,
+        "permission": "product_man_brand_san-pham"
+    },
+    {
+        "id": 1614,
+        "id_permission_group": 1,
+        "permission": "product_edit_sub_san-pham"
+    },
+    {
+        "id": 1615,
+        "id_permission_group": 1,
+        "permission": "product_delete_sub_san-pham"
+    },
+    {
+        "id": 1613,
+        "id_permission_group": 1,
+        "permission": "product_add_sub_san-pham"
+    },
+    {
+        "id": 1612,
+        "id_permission_group": 1,
+        "permission": "product_man_sub_san-pham"
+    },
+    {
+        "id": 1611,
+        "id_permission_group": 1,
+        "permission": "product_delete_item_san-pham"
+    },
+    {
+        "id": 1610,
+        "id_permission_group": 1,
+        "permission": "product_edit_item_san-pham"
+    },
+    {
+        "id": 1609,
+        "id_permission_group": 1,
+        "permission": "product_add_item_san-pham"
+    },
+    {
+        "id": 1608,
+        "id_permission_group": 1,
+        "permission": "product_man_item_san-pham"
+    },
+    {
+        "id": 1606,
+        "id_permission_group": 1,
+        "permission": "product_edit_cat_san-pham"
+    },
+    {
+        "id": 1607,
+        "id_permission_group": 1,
+        "permission": "product_delete_cat_san-pham"
+    },
+    {
+        "id": 1605,
+        "id_permission_group": 1,
+        "permission": "product_add_cat_san-pham"
+    },
+    {
+        "id": 1604,
+        "id_permission_group": 1,
+        "permission": "product_man_cat_san-pham"
+    },
+    {
+        "id": 1603,
+        "id_permission_group": 1,
+        "permission": "product_delete_list_san-pham"
+    },
+    {
+        "id": 2367,
+        "id_permission_group": 2,
+        "permission": "photo_add_photo_banner-media"
+    },
+    {
+        "id": 2366,
+        "id_permission_group": 2,
+        "permission": "photo_man_photo_banner-media"
+    },
+    {
+        "id": 1602,
+        "id_permission_group": 1,
+        "permission": "product_edit_list_san-pham"
+    },
+    {
+        "id": 1601,
+        "id_permission_group": 1,
+        "permission": "product_add_list_san-pham"
+    },
+    {
+        "id": 1600,
+        "id_permission_group": 1,
+        "permission": "product_man_list_san-pham"
+    },
+    {
+        "id": 1746,
+        "id_permission_group": 1,
+        "permission": "static_update_slogan"
+    },
+    {
+        "id": 1747,
+        "id_permission_group": 1,
+        "permission": "static_update_lienhe"
+    },
+    {
+        "id": 1748,
+        "id_permission_group": 1,
+        "permission": "static_update_footer"
+    },
+    {
+        "id": 1749,
+        "id_permission_group": 1,
+        "permission": "pushOnesignal_man"
+    },
+    {
+        "id": 2365,
+        "id_permission_group": 2,
+        "permission": "photo_photo_static_logo-bct"
+    },
+    {
+        "id": 2364,
+        "id_permission_group": 2,
+        "permission": "photo_photo_static_logo"
+    },
+    {
+        "id": 2363,
+        "id_permission_group": 2,
+        "permission": "photo_photo_static_favicon"
+    },
+    {
+        "id": 2362,
+        "id_permission_group": 2,
+        "permission": "photo_photo_static_hinh-seo"
+    },
+    {
+        "id": 2361,
+        "id_permission_group": 2,
+        "permission": "news_delete_chi-nhanh"
+    },
+    {
+        "id": 2360,
+        "id_permission_group": 2,
+        "permission": "news_edit_chi-nhanh"
+    },
+    {
+        "id": 2359,
+        "id_permission_group": 2,
+        "permission": "news_add_chi-nhanh"
+    },
+    {
+        "id": 2358,
+        "id_permission_group": 2,
+        "permission": "news_man_chi-nhanh"
+    },
+    {
+        "id": 2357,
+        "id_permission_group": 2,
+        "permission": "news_delete_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 2356,
+        "id_permission_group": 2,
+        "permission": "news_edit_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 2355,
+        "id_permission_group": 2,
+        "permission": "news_add_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 2354,
+        "id_permission_group": 2,
+        "permission": "news_man_hinh-thuc-thanh-toan"
+    },
+    {
+        "id": 2353,
+        "id_permission_group": 2,
+        "permission": "news_delete_chinh-sach"
+    },
+    {
+        "id": 2352,
+        "id_permission_group": 2,
+        "permission": "news_edit_chinh-sach"
+    },
+    {
+        "id": 2351,
+        "id_permission_group": 2,
+        "permission": "news_add_chinh-sach"
+    },
+    {
+        "id": 2350,
+        "id_permission_group": 2,
+        "permission": "news_man_chinh-sach"
+    },
+    {
+        "id": 2349,
+        "id_permission_group": 2,
+        "permission": "news_delete_dich-vu"
+    },
+    {
+        "id": 2348,
+        "id_permission_group": 2,
+        "permission": "news_edit_dich-vu"
+    },
+    {
+        "id": 2347,
+        "id_permission_group": 2,
+        "permission": "news_add_dich-vu"
+    },
+    {
+        "id": 2346,
+        "id_permission_group": 2,
+        "permission": "news_man_dich-vu"
+    },
+    {
+        "id": 2345,
+        "id_permission_group": 2,
+        "permission": "news_delete_photo_tin-tuc"
+    },
+    {
+        "id": 2344,
+        "id_permission_group": 2,
+        "permission": "news_edit_photo_tin-tuc"
+    },
+    {
+        "id": 2343,
+        "id_permission_group": 2,
+        "permission": "news_add_photo_tin-tuc"
+    },
+    {
+        "id": 2342,
+        "id_permission_group": 2,
+        "permission": "news_man_photo_tin-tuc"
+    },
+    {
+        "id": 2341,
+        "id_permission_group": 2,
+        "permission": "news_delete_tin-tuc"
+    },
+    {
+        "id": 2340,
+        "id_permission_group": 2,
+        "permission": "news_edit_tin-tuc"
+    },
+    {
+        "id": 2339,
+        "id_permission_group": 2,
+        "permission": "news_add_tin-tuc"
+    },
+    {
+        "id": 2338,
+        "id_permission_group": 2,
+        "permission": "news_man_tin-tuc"
+    },
+    {
+        "id": 2337,
+        "id_permission_group": 2,
+        "permission": "product_delete_photo_san-pham"
+    },
+    {
+        "id": 2336,
+        "id_permission_group": 2,
+        "permission": "product_edit_photo_san-pham"
+    },
+    {
+        "id": 2335,
+        "id_permission_group": 2,
+        "permission": "product_add_photo_san-pham"
+    },
+    {
+        "id": 2334,
+        "id_permission_group": 2,
+        "permission": "product_man_photo_san-pham"
+    },
+    {
+        "id": 2333,
+        "id_permission_group": 2,
+        "permission": "comment_man_product_san-pham"
+    },
+    {
+        "id": 2332,
+        "id_permission_group": 2,
+        "permission": "product_delete_san-pham"
+    },
+    {
+        "id": 2331,
+        "id_permission_group": 2,
+        "permission": "product_edit_san-pham"
+    },
+    {
+        "id": 2330,
+        "id_permission_group": 2,
+        "permission": "product_add_san-pham"
+    },
+    {
+        "id": 2329,
+        "id_permission_group": 2,
+        "permission": "product_man_san-pham"
+    },
+    {
+        "id": 2328,
+        "id_permission_group": 2,
+        "permission": "product_delete_brand_san-pham"
+    },
+    {
+        "id": 2327,
+        "id_permission_group": 2,
+        "permission": "product_edit_brand_san-pham"
+    },
+    {
+        "id": 2326,
+        "id_permission_group": 2,
+        "permission": "product_add_brand_san-pham"
+    },
+    {
+        "id": 2325,
+        "id_permission_group": 2,
+        "permission": "product_man_brand_san-pham"
+    },
+    {
+        "id": 2324,
+        "id_permission_group": 2,
+        "permission": "product_delete_cat_san-pham"
+    },
+    {
+        "id": 2323,
+        "id_permission_group": 2,
+        "permission": "product_edit_cat_san-pham"
+    },
+    {
+        "id": 2322,
+        "id_permission_group": 2,
+        "permission": "product_add_cat_san-pham"
+    },
+    {
+        "id": 2321,
+        "id_permission_group": 2,
+        "permission": "product_man_cat_san-pham"
+    },
+    {
+        "id": 2320,
+        "id_permission_group": 2,
+        "permission": "product_delete_list_san-pham"
+    },
+    {
+        "id": 2319,
+        "id_permission_group": 2,
+        "permission": "product_edit_list_san-pham"
+    },
+    {
+        "id": 2318,
+        "id_permission_group": 2,
+        "permission": "product_add_list_san-pham"
+    },
+    {
+        "id": 2317,
+        "id_permission_group": 2,
+        "permission": "product_man_list_san-pham"
+    },
+    {
+        "id": 2378,
+        "id_permission_group": 2,
+        "permission": "photo_man_photo_social2"
+    },
+    {
+        "id": 2379,
+        "id_permission_group": 2,
+        "permission": "photo_add_photo_social2"
+    },
+    {
+        "id": 2380,
+        "id_permission_group": 2,
+        "permission": "photo_edit_photo_social2"
+    },
+    {
+        "id": 2381,
+        "id_permission_group": 2,
+        "permission": "photo_delete_photo_social2"
+    },
+    {
+        "id": 2382,
+        "id_permission_group": 2,
+        "permission": "photo_man_photo_partner"
+    },
+    {
+        "id": 2383,
+        "id_permission_group": 2,
+        "permission": "photo_add_photo_partner"
+    },
+    {
+        "id": 2384,
+        "id_permission_group": 2,
+        "permission": "photo_edit_photo_partner"
+    },
+    {
+        "id": 2385,
+        "id_permission_group": 2,
+        "permission": "photo_delete_photo_partner"
+    },
+    {
+        "id": 2386,
+        "id_permission_group": 2,
+        "permission": "order_man"
+    },
+    {
+        "id": 2387,
+        "id_permission_group": 2,
+        "permission": "order_edit"
+    },
+    {
+        "id": 2388,
+        "id_permission_group": 2,
+        "permission": "order_delete"
+    },
+    {
+        "id": 2389,
+        "id_permission_group": 2,
+        "permission": "tags_man_san-pham"
+    },
+    {
+        "id": 2390,
+        "id_permission_group": 2,
+        "permission": "tags_add_san-pham"
+    },
+    {
+        "id": 2391,
+        "id_permission_group": 2,
+        "permission": "tags_edit_san-pham"
+    },
+    {
+        "id": 2392,
+        "id_permission_group": 2,
+        "permission": "tags_delete_san-pham"
+    },
+    {
+        "id": 2393,
+        "id_permission_group": 2,
+        "permission": "tags_man_tin-tuc"
+    },
+    {
+        "id": 2394,
+        "id_permission_group": 2,
+        "permission": "tags_add_tin-tuc"
+    },
+    {
+        "id": 2395,
+        "id_permission_group": 2,
+        "permission": "tags_edit_tin-tuc"
+    },
+    {
+        "id": 2396,
+        "id_permission_group": 2,
+        "permission": "tags_delete_tin-tuc"
+    },
+    {
+        "id": 2397,
+        "id_permission_group": 2,
+        "permission": "newsletter_man_dang-ky-nhan-tin"
+    },
+    {
+        "id": 2398,
+        "id_permission_group": 2,
+        "permission": "static_update_gioi-thieu"
+    },
+    {
+        "id": 2399,
+        "id_permission_group": 2,
+        "permission": "static_update_tro-thanh-dai-ly"
+    },
+    {
+        "id": 2400,
+        "id_permission_group": 2,
+        "permission": "static_update_copyright"
+    },
+    {
+        "id": 2401,
+        "id_permission_group": 2,
+        "permission": "static_update_contact"
+    },
+    {
+        "id": 2402,
+        "id_permission_group": 2,
+        "permission": "static_update_footer"
+    },
+    {
+        "id": 2403,
+        "id_permission_group": 2,
+        "permission": "seopage_update_san-pham"
+    },
+    {
+        "id": 2404,
+        "id_permission_group": 2,
+        "permission": "seopage_update_tin-tuc"
+    },
+    {
+        "id": 2405,
+        "id_permission_group": 2,
+        "permission": "seopage_update_dich-vu"
+    },
+    {
+        "id": 2406,
+        "id_permission_group": 2,
+        "permission": "setting_update"
+    },
+    {
+        "id": 2407,
+        "id_permission_group": 2,
+        "permission": "user_manual_man"
+    }
+]
