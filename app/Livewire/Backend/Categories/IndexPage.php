@@ -16,7 +16,10 @@ class IndexPage extends Component
     public string $type = 'product';
 
     protected $queryString = [
-        'search' => ['except' => ''],
+        'search'        => ['except' => ''],
+        'statusFilter'  => ['except' => '', 'as' => 'status'],
+        'sortField'     => ['except' => 'order'],
+        'sortDirection' => ['except' => 'asc'],
     ];
 
 
@@ -55,13 +58,12 @@ class IndexPage extends Component
     }
 
 
-    private function getCategoriesQuery()
+    protected function getCategoriesQuery()
     {
         return Category::query()
             ->ofType($this->type)
-            ->when($this->search, function ($query) {
-                $query->where('name', 'like', "%{$this->search}%");
-            });
+            ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
+            ->when($this->statusFilter !== '', fn($q) => $q->where('is_active', $this->statusFilter));
     }
 
     public function getTitle(): string

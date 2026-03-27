@@ -4,7 +4,7 @@ namespace App\Data;
 
 use Illuminate\Http\Request;
 
-class OrderData
+class OrderData extends BaseData
 {
     /**
      * @param array<int, array<string, mixed>> $items
@@ -12,47 +12,23 @@ class OrderData
     public function __construct(
         public string $customer_name,
         public string $customer_phone,
-        public ?string $customer_email,
-        public ?string $customer_address,
-        public float $shipping_fee,
-        public string $status,
-        public ?string $notes,
-        public ?string $admin_notes,
-        public array $items,
+        public ?string $customer_email = null,
+        public ?string $customer_address = null,
+        public float $shipping_fee = 0,
+        public string $status = 'pending',
+        public ?string $notes = null,
+        public ?string $admin_notes = null,
+        public array $items = [],
     ) {
     }
 
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            customer_name: $data['customer_name'],
-            customer_phone: $data['customer_phone'],
-            customer_email: $data['customer_email'] ?? null,
-            customer_address: $data['customer_address'] ?? null,
-            shipping_fee: (float) ($data['shipping_fee'] ?? 0),
-            status: $data['status'],
-            notes: $data['notes'] ?? null,
-            admin_notes: $data['admin_notes'] ?? null,
-            items: $data['items'] ?? [],
-        );
-    }
-
-    public static function fromRequest(Request $request): self
-    {
-        return self::fromArray($request->all());
-    }
-
+    /**
+     * Override toArray() to remove items as they are stored in order_items table.
+     */
     public function toArray(): array
     {
-        return [
-            'customer_name' => $this->customer_name,
-            'customer_phone' => $this->customer_phone,
-            'customer_email' => $this->customer_email,
-            'customer_address' => $this->customer_address,
-            'shipping_fee' => $this->shipping_fee,
-            'status' => $this->status,
-            'notes' => $this->notes,
-            'admin_notes' => $this->admin_notes,
-        ];
+        $data = parent::toArray();
+        unset($data['items']);
+        return $data;
     }
 }

@@ -4,54 +4,26 @@ namespace App\Data;
 
 use Illuminate\Http\Request;
 
-class UserData
+class UserData extends BaseData
 {
     public function __construct(
         public string $name,
         public string $email,
-        public ?string $password,
+        public ?string $password = null,
         public array $roles = [],
         public bool $is_active = true,
         public mixed $avatar = null,
     ) {
     }
 
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            name: $data['name'],
-            email: $data['email'],
-            password: $data['password'] ?? null,
-            roles: $data['roles'] ?? [],
-            is_active: (bool) ($data['is_active'] ?? true),
-            avatar: $data['avatar'] ?? null,
-        );
-    }
-
-    public static function fromRequest(Request $request): self
-    {
-        return new self(
-            name: $request->input('name'),
-            email: $request->input('email'),
-            password: $request->input('password'),
-            roles: $request->input('roles', []),
-            is_active: $request->boolean('is_active', true),
-            avatar: $request->file('avatar'),
-        );
-    }
-
+    /**
+     * Override toArray() to remove password and avatar.
+     * Roles are handled separately in User actions.
+     */
     public function toArray(): array
     {
-        $data = [
-            'name' => $this->name,
-            'email' => $this->email,
-            'is_active' => $this->is_active,
-        ];
-
-        if ($this->password) {
-            $data['password'] = $this->password;
-        }
-
+        $data = parent::toArray();
+        unset($data['password'], $data['avatar'], $data['roles']);
         return $data;
     }
 }

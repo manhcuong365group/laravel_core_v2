@@ -5,22 +5,15 @@ namespace App\Livewire\Backend\Brands;
 use App\Actions\Brand\UpdateBrandAction;
 use App\Data\BrandData;
 use App\Models\Brand;
+use App\Traits\WithBrandForms;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class EditPage extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithBrandForms;
 
     public int $brandId;
-    public string $name = '';
-    public string $slug = '';
-    public string $description = '';
-    public string $website = '';
-    public string $order = '0';
-    public bool $is_active = true;
-    public $logo;
-
     public ?string $currentLogoUrl = null;
 
     public function mount(Brand $brand): void
@@ -40,15 +33,7 @@ class EditPage extends Component
 
     protected function rules(): array
     {
-        return [
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:brands,slug,' . $this->brandId,
-            'description' => 'nullable|string',
-            'website' => 'nullable|url|max:255',
-            'order' => 'nullable|integer',
-            'is_active' => 'boolean',
-            'logo' => 'nullable|image|max:2048',
-        ];
+        return $this->brandRules($this->brandId);
     }
 
     public function save(UpdateBrandAction $action): void
@@ -58,11 +43,16 @@ class EditPage extends Component
 
         $validated = $this->validate();
 
-        $data = BrandData::fromArray($validated);
-        $action->execute($brand, $data);
+        try {
+            $data = BrandData::fromArray($validated);
+            $action->execute($brand, $data);
 
-        session()->flash('success', 'Thương hiệu đã được cập nhật!');
-        $this->redirect(route('backend.brands.index'), navigate: true);
+            session()->flash('success', 'Thương hiệu đã được cập nhật!');
+            $this->redirect(route('backend.brands.index'), navigate: true);
+        } catch (\Throwable $e) {
+            report($e);
+            $this->dispatch('toast', message: 'Có lỗi xảy ra khi cập nhật thương hiệu!', type: 'error');
+        }
     }
 
     public function render()
@@ -73,5 +63,3 @@ class EditPage extends Component
             ]);
     }
 }
-
-

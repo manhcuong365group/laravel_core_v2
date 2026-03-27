@@ -6,31 +6,21 @@ use App\Actions\Order\BulkDeleteOrderAction;
 use App\Actions\Order\BulkStatusOrderAction;
 use App\Actions\Order\DeleteOrderAction;
 use App\Models\Order;
+use App\Traits\WithBackendTable;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class IndexPage extends Component
 {
-    use WithPagination;
+    use WithBackendTable;
 
-    public string $search = '';
-    public string $statusFilter = '';
-    public string $sortField = 'created_at';
-    public string $sortDirection = 'desc';
-    public array $selectedItems = [];
-    public bool $selectAll = false;
-
-    public bool $showDeleteModal = false;
-    public ?int $deleteTargetId = null;
-    public string $deleteTargetCode = '';
-
-    public bool $showBulkStatusModal = false;
-    public string $bulkStatusValue = '';
     public string $bulkStatusNote = '';
+    public string $bulkStatusValue = '';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'statusFilter' => ['except' => '', 'as' => 'status'],
+        'sortField' => ['except' => 'created_at'],
+        'sortDirection' => ['except' => 'desc'],
     ];
 
     public function mount(): void
@@ -38,122 +28,10 @@ class IndexPage extends Component
         $this->authorize('viewAny', Order::class);
     }
 
-    public function updatingSearch(): void
-    {
-        $this->resetPage();
-    }
-
-    public function updatingStatusFilter(): void
-    {
-        $this->resetPage();
-    }
-
-    public function sortBy(string $field): void
-    {
-        if ($this->sortField === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-            return;
-        }
-
-        $this->sortField = $field;
-        $this->sortDirection = 'asc';
-    }
-
-    public function confirmDelete(int $id, string $code): void
-    {
-        $this->deleteTargetId = $id;
-        $this->deleteTargetCode = $code;
-        $this->showDeleteModal = true;
-    }
-
-    public function deleteOrder(DeleteOrderAction $action): void
-    {
-        if ($this->deleteTargetId) {
-            $order = Order::find($this->deleteTargetId);
-            if ($order) {
-                $this->authorize('delete', $order);
-                $action->execute($order);
-            }
-        }
-
-        $this->showDeleteModal = false;
-        $this->deleteTargetId = null;
-        $this->deleteTargetCode = '';
-        $this->dispatch('toast', message: 'Đã xóa đơn hàng thành công.', type: 'success');
-    }
-
-    public function deleteSelected(BulkDeleteOrderAction $action): void
-    {
-        $this->authorize('delete', Order::class);
-
-        if (empty($this->selectedItems)) {
-            return;
-        }
-
-        $count = $action->execute($this->selectedItems);
-        $this->selectedItems = [];
-        $this->selectAll = false;
-
-        $this->dispatch('toast', message: "Đã xóa {$count} đơn hàng đã chọn.", type: 'success');
-    }
-
-    public function openBulkStatusModal(): void
-    {
-        if (empty($this->selectedItems)) {
-            $this->dispatch('toast', message: 'Vui lòng chọn ít nhất một đơn hàng.', type: 'warning');
-            return;
-        }
-        $this->showBulkStatusModal = true;
-    }
-
-    public function bulkStatus(BulkStatusOrderAction $action): void
-    {
-        $this->authorize('update', Order::class);
-
-        if (empty($this->selectedItems) || empty($this->bulkStatusValue)) {
-            return;
-        }
-
-        $count = $action->execute($this->selectedItems, $this->bulkStatusValue, $this->bulkStatusNote);
-        $this->selectedItems = [];
-        $this->selectAll = false;
-        $this->showBulkStatusModal = false;
-        $this->bulkStatusValue = '';
-        $this->bulkStatusNote = '';
-
-        $this->dispatch('toast', message: "Đã cập nhật trạng thái {$count} đơn hàng.", type: 'success');
-    }
-
-    public function toggleSelectAll(): void
-    {
-        if ($this->selectAll) {
-            $this->selectedItems = [];
-            $this->selectAll = false;
-            return;
-        }
-
-        $this->selectedItems = $this->getOrdersQuery()
-            ->pluck('id')
-            ->map(fn($id) => (string) $id)
-            ->toArray();
-
-        $this->selectAll = true;
-    }
-
-    public function updatedSelectedItems(): void
-    {
-        $selectedCount = count($this->selectedItems);
-
-        if ($selectedCount === 0) {
-            $this->selectAll = false;
-            return;
-        }
-
-        $totalFiltered = (clone $this->getOrdersQuery())->count();
-        $this->selectAll = $selectedCount === $totalFiltered;
-    }
-
-    private function getOrdersQuery()
+    /**
+     * Get the orders query for the table.
+     */
+    public function getOrdersQuery()
     {
         return Order::query()
             ->withCount('items')
@@ -169,9 +47,40 @@ class IndexPage extends Component
             ->orderBy($this->sortField, $this->sortDirection);
     }
 
+    public function toggleSelectAll(): void
+    {
+        $this->tableToggleSelectAll($this->getOrdersQuery()->get());
+    }
+
+    public function executeDelete(DeleteOrderAction $deleteAction, BulkDeleteOrderAction $bulkDeleteAction): void
+    {
+        $this->executeDeleteAction($deleteAction, $bulkDeleteAction, Order::class, 'đơn hàng');
+    }
+
+    /**
+     * Override bulk status update specifically for Orders (needs value & note).
+     */
+    public function bulkStatus(BulkStatusOrderAction $action): void
+    {
+        $this->authorize('update', Order::class);
+
+        if (empty($this->selectedItems) || empty($this->bulkStatusValue)) {
+            $this->notify('Vui lòng chọn ít nhất một đơn hàng và trạng thái mới.', 'warning');
+            return;
+        }
+
+        $count = $action->execute($this->selectedItems, $this->bulkStatusValue, $this->bulkStatusNote);
+        
+        $this->resetSelection();
+        $this->bulkStatusValue = '';
+        $this->bulkStatusNote = '';
+
+        $this->notify("Đã cập nhật trạng thái {$count} đơn hàng.");
+    }
+
     public function render()
     {
-        $orders = $this->getOrdersQuery()->paginate(20);
+        $orders = $this->getOrdersQuery()->paginate($this->perPage);
 
         return view('livewire.backend.orders.index-page', [
             'orders' => $orders,
@@ -182,4 +91,3 @@ class IndexPage extends Component
         ]);
     }
 }
-

@@ -77,7 +77,7 @@ def is_page_file(file_path: Path) -> bool:
 
 def find_pages(project_path: Path) -> list:
     """Find page files to check."""
-    patterns = ['**/*.html', '**/*.htm', '**/*.jsx', '**/*.tsx']
+    patterns = ['**/*.html', '**/*.htm', '**/*.jsx', '**/*.tsx', '**/*.blade.php']
     
     files = []
     for pattern in patterns:

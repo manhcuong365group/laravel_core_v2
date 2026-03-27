@@ -28,7 +28,7 @@ class IndexPage extends Component
         'sortDirection' => ['except' => 'desc'],
     ];
 
-    public ?string $brandFilter = null;
+    public ?int $brandFilter = null;
 
     /**
      * Get the products query for the table.

@@ -55,17 +55,25 @@ def detect_project_type(project_path: Path) -> dict:
         except:
             pass
     
-    # Python project
-    if (project_path / "pyproject.toml").exists() or (project_path / "requirements.txt").exists():
-        result["type"] = "python"
+    # PHP / Laravel project
+    composer_json = project_path / "composer.json"
+    if composer_json.exists():
+        result["type"] = "php"
         
-        # Check for ruff
-        result["linters"].append({"name": "ruff", "cmd": ["ruff", "check", "."]})
+        # Check for Laravel Pint
+        pint_path = project_path / "vendor" / "bin" / "pint"
+        if pint_path.exists():
+            # On Windows, use php to run vendor/bin/pint if needed, or vendor\bin\pint
+            if platform.system() == "Windows":
+                result["linters"].append({"name": "pint", "cmd": ["php", "vendor/bin/pint", "--test"]})
+            else:
+                result["linters"].append({"name": "pint", "cmd": ["./vendor/bin/pint", "--test"]})
         
-        # Check for mypy
-        if (project_path / "mypy.ini").exists() or (project_path / "pyproject.toml").exists():
-            result["linters"].append({"name": "mypy", "cmd": ["mypy", "."]})
-    
+        # Check for PHPStan
+        phpstan_path = project_path / "vendor" / "bin" / "phpstan"
+        if phpstan_path.exists():
+            result["linters"].append({"name": "phpstan", "cmd": ["php", "vendor/bin/phpstan", "analyze"]})
+            
     return result
 
 
