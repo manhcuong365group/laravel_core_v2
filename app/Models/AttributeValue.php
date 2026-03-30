@@ -6,36 +6,39 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 class AttributeValue extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, \Spatie\Sluggable\HasSlug;
 
     protected $fillable = [
         'attribute_id',
         'value',
         'slug',
-        'color_code',
-        'order',
+        'meta_value', // color hex code e.g. #FF0000
+        'display_order'
     ];
 
-    public function getSlugOptions(): SlugOptions
+    public function getSlugOptions(): \Spatie\Sluggable\SlugOptions
     {
-        return SlugOptions::create()
+        return \Spatie\Sluggable\SlugOptions::create()
             ->generateSlugsFrom('value')
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Get the attribute this value belongs to.
+     */
     public function attribute(): BelongsTo
     {
         return $this->belongsTo(Attribute::class);
     }
 
-    public function products(): BelongsToMany
+    /**
+     * The variants that use this attribute value.
+     */
+    public function variants(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_attribute_values')
-            ->withPivot('price_adjustment');
+        return $this->belongsToMany(ProductVariant::class, 'product_variant_attribute_value');
     }
 }

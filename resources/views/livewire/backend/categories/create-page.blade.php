@@ -1,18 +1,16 @@
-<div class="space-y-8 pb-32">
+<section class="page space-y-8 pb-32">
     <!-- Header Section -->
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20 text-primary shadow-inner">
-                 <i class="ti {{ $pageIcon ?? 'ti-category' }} text-2xl"></i>
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20 text-primary shadow-inner">
+                 <x-mary-icon name="o-folder-plus" class="w-7 h-7" />
             </div>
             <div>
-                <h1 class="text-3xl font-black text-text-main tracking-tight uppercase tracking-[0.1em]">{{ $pageTitle }}</h1>
-                <p class="text-[11px] font-black text-text-muted mt-1 uppercase tracking-widest opacity-60">Thêm mới danh mục vào hệ thống.</p>
+                <p class="text-[11px] font-black text-primary uppercase tracking-[0.2em] mb-1 opacity-80">Quản lý nội dung</p>
+                <h1 class="text-3xl font-black text-text-main tracking-tight uppercase tracking-[0.1em]">{{ $title }}</h1>
             </div>
         </div>
-        <x-backend.ui.button variant="neutral" :href="route('backend.categories.index', $type)" icon="ti ti-arrow-left" class="rounded-2xl font-black text-[10px] uppercase tracking-widest bg-white/5 border-white/10 hover:bg-white/10">
-            Quay lại danh sách
-        </x-backend.ui.button>
+        <x-mary-button label="Quay lại" icon="o-arrow-left" link="{{ route('backend.categories.index', $form->type) }}" class="btn-ghost rounded-2xl border-white/5 font-bold" />
     </div>
 
     <form wire:submit="save" class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
@@ -20,81 +18,116 @@
         <div class="xl:col-span-8 space-y-8">
             
             <!-- Basic Information -->
-            <x-admin.form-section title="Thông tin chi tiết" icon="ti-info-circle" color="blue">
-                <div class="grid grid-cols-1 gap-6">
-                    <x-backend.forms.input wire:model.blur="name" name="name" label="Tên danh mục" required placeholder="Nhập tên danh mục..." class="text-lg font-bold" />
+            <x-mary-card title="Thông tin cơ bản" separator shadow class="glass-card rounded-3xl border-white/10 shadow-2xl">
+                <div class="grid grid-cols-1 gap-8 p-2">
+                    <x-mary-input 
+                        wire:model.blur="form.name" 
+                        label="Tên danh mục" 
+                        required 
+                        placeholder="VD: Điện thoại, Tin tức công nghệ..." 
+                        class="text-lg font-black tracking-tight focus:ring-primary/20" 
+                    />
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <x-backend.forms.input wire:model="slug" name="slug" label="URL tĩnh (Slug)" placeholder="tu-dong-tao-tu-ten..." />
-                        <x-backend.forms.input wire:model="order" name="order" label="Thứ tự hiển thị" type="number" placeholder="0" />
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <x-mary-input wire:model="form.slug" label="URL tĩnh (Slug)" placeholder="tu-dong-tao-tu-ten" icon="o-link" hint="Dùng để hiển thị trên trình duyệt" />
+                        <x-mary-input wire:model="form.order" label="Thứ tự hiển thị" type="number" placeholder="0" icon="o-hashtag" hint="Số nhỏ sẽ hiển thị trước" />
                     </div>
 
-                    <x-backend.forms.textarea wire:model="description" name="description" label="Mô tả nội dung" rows="5" placeholder="Mô tả tóm tắt nội dung danh mục..." />
+                    <x-mary-textarea wire:model="form.description" label="Mô tả chi tiết" rows="6" placeholder="Nhập mô tả tóm tắt cho danh mục này..." inline />
                 </div>
-            </x-admin.form-section>
+            </x-mary-card>
 
-            <!-- SEO Intelligence -->
-            <x-admin.seo-manager nameModel="name" descModel="description" />
+            <!-- SEO Settings -->
+            <x-mary-card title="Tối ưu SEO (Google)" separator shadow x-data="{ expanded: false }" class="glass-card rounded-3xl border-white/10 shadow-2xl overflow-hidden">
+                <x-slot:menu>
+                    <x-mary-button @click="expanded = !expanded" :icon="expanded ? 'o-chevron-up' : 'o-chevron-down'" class="btn-ghost btn-sm text-text-muted" />
+                </x-slot:menu>
+                
+                <div x-show="expanded" x-collapse class="space-y-8 p-2">
+                    <x-mary-input wire:model="form.meta_title" label="Tiêu đề SEO (Meta Title)" placeholder="Tối ưu cho kết quả tìm kiếm" />
+                    <x-mary-textarea wire:model="form.meta_description" label="Mô tả SEO (Meta Description)" placeholder="Đoạn văn ngắn giới thiệu trên Google" />
+                    <x-mary-input wire:model="form.meta_keywords" label="Từ khóa SEO" placeholder="VD: điện thoại, giá rẻ, chính hãng" />
+                </div>
+                
+                <div x-show="!expanded" class="text-[10px] text-text-muted italic opacity-40 uppercase tracking-widest font-black p-2">
+                    <x-mary-icon name="o-information-circle" class="w-3 h-3 mr-1 inline" /> Nhấn để cấu hình Meta Tags giúp tăng thứ hạng tìm kiếm...
+                </div>
+            </x-mary-card>
         </div>
 
         <!-- Sidebar Column (4cols) -->
         <div class="xl:col-span-4 space-y-8">
             
-            <!-- Categorization -->
-            <x-admin.form-section title="Cấu trúc" icon="ti-hierarchy" color="amber">
-                <x-backend.forms.select 
-                    wire:model="parent_id" 
-                    name="parent_id" 
-                    label="Danh mục cha" 
-                    :options="$parentCategories->pluck('name', 'id')->all()" 
-                    placeholder="-- Cấp độ cao nhất --"
-                />
-            </x-admin.form-section>
-
-            <!-- Visibility Settings -->
-            <x-admin.form-section title="Trạng thái hiển thị" icon="ti-eyeglass" color="pink">
-                <div class="space-y-4">
-                    <label class="flex items-center justify-between cursor-pointer p-4 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
-                        <span class="text-sm font-bold text-text-main">Công khai hiển thị</span>
-                        <div class="relative">
-                            <input type="checkbox" wire:model="is_active" class="sr-only peer">
-                            <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white/10 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500 transition-colors"></div>
-                        </div>
-                    </label>
-                    
-                    <label class="flex items-center justify-between cursor-pointer p-4 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
-                        <span class="text-sm font-bold text-text-main">Hiển thị trên menu</span>
-                        <div class="relative">
-                            <input type="checkbox" wire:model="show_in_menu" class="sr-only peer">
-                            <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white/10 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500 transition-colors"></div>
-                        </div>
-                    </label>
-                </div>
-            </x-admin.form-section>
-
-            <!-- Media Section -->
-            <x-admin.form-section title="Hình ảnh đại diện" icon="ti-photo" color="purple">
-                <div class="space-y-4">
-                    <x-backend.forms.media-uploader 
-                        wire:model="image"
-                        :model="$image"
-                        label=""
-                        hint="Đề xuất: 800x600px"
+            <!-- Hierarchical Structure -->
+            <x-mary-card title="Phân cấp" separator shadow class="glass-card rounded-3xl border-white/10 shadow-2xl">
+                <div class="p-2 space-y-6">
+                    <x-mary-select 
+                        wire:model="form.parent_id" 
+                        label="Danh mục cha" 
+                        :options="$parentCategories" 
+                        placeholder="-- Cấp độ cao nhất --"
+                        icon="o-list-bullet"
+                        class="font-bold"
                     />
+                    <div class="bg-primary/5 border border-primary/10 rounded-2xl p-4">
+                        <p class="text-[10px] text-primary font-black uppercase tracking-widest leading-relaxed">
+                            Mẹo: Chọn danh mục cha nếu muốn tạo tiểu mục (sub-category).
+                        </p>
+                    </div>
                 </div>
-            </x-admin.form-section>
+            </x-mary-card>
+
+            <!-- Status & Visibility -->
+            <x-mary-card title="Hiển thị" separator shadow class="glass-card rounded-3xl border-white/10 shadow-2xl">
+                <div class="space-y-6 p-2">
+                    <x-mary-toggle label="Công khai hiển thị" wire:model="form.is_active" class="toggle-success font-black text-xs" right />
+                    <x-mary-toggle label="Hiển thị trên menu" wire:model="form.show_in_menu" class="toggle-primary font-black text-xs" right />
+                </div>
+            </x-mary-card>
+
+            <!-- Image Asset -->
+            <x-mary-card title="Ảnh đại diện" separator shadow class="glass-card rounded-3xl border-white/10 shadow-2xl">
+                <div class="p-2">
+                    <x-mary-file wire:model="form.image" label="" hint="Đề xuất: 800x600px, dung lượng < 2MB" crop-after-change>
+                        <div class="relative group cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed border-white/10 hover:border-primary/50 transition-all duration-300 aspect-square flex items-center justify-center bg-base-200/30">
+                            @if($form->image)
+                                <img src="{{ $form->image->temporaryUrl() }}" class="object-cover w-full h-full" />
+                            @else
+                                <div class="flex flex-col items-center gap-2">
+                                    <x-mary-icon name="o-cloud-arrow-up" class="w-10 h-10 text-text-muted/20" />
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-text-muted/40 group-hover:text-primary transition-colors">Tải lên hình ảnh</span>
+                                </div>
+                            @endif
+                        </div>
+                    </x-mary-file>
+                </div>
+            </x-mary-card>
         </div>
 
-        <!-- Sticky Action Bar -->
-        <x-admin.sticky-bar
-            cancelHref="{{ route('backend.categories.index', $type) }}"
-            target="save, image"
-            saveLabel="Tạo danh mục ngay"
-            mode="Create"
-        >
-            <x-slot:info>
-                <span class="text-[13px] font-bold text-text-main truncate max-w-[180px]" x-data="{ name: $wire.entangle('name') }" x-text="name || 'Danh mục mới...'"></span>
-            </x-slot:info>
-        </x-admin.sticky-bar>
+        <!-- STICKY ACTION BAR -->
+        <div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-50">
+            <div class="backdrop-blur-2xl bg-base-100/60 border border-white/20 p-4 rounded-3xl shadow-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold shadow-inner border border-primary/20">
+                        <x-mary-icon name="o-sparkles" class="w-6 h-6 animate-pulse" />
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[9px] font-black uppercase text-primary tracking-[0.2em] opacity-80">Đang chuẩn bị</span>
+                        <span class="text-base font-black text-text-main truncate max-w-[200px] tracking-tight">{{ $form->name ?: 'Danh mục mới...' }}</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <x-mary-button label="Hủy" link="{{ route('backend.categories.index', $form->type) }}" class="btn-ghost font-bold" />
+                    <x-mary-button label="Xác nhận lưu ✨" type="submit" class="btn-primary shadow-xl shadow-primary/30 font-black px-10 h-12 rounded-2xl" spinner="save" />
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+="btn-primary shadow-lg shadow-primary/30 font-black px-8" spinner="save" />
+                </div>
+            </div>
+        </div>
     </form>
 </div>

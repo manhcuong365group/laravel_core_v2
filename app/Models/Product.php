@@ -75,10 +75,9 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Brand::class);
     }
 
-    public function attributeValues(): BelongsToMany
+    public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(AttributeValue::class, 'product_attribute_values')
-            ->withPivot('price_adjustment');
+        return $this->hasMany(ProductVariant::class);
     }
 
     public function tags(): BelongsToMany

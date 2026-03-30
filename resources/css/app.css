@@ -4,6 +4,9 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../../vendor/robsontenorio/mary/src/View/Components/**/*.php';
+
+@plugin "daisyui";
 
 :root {
     /* Standard Professional Palette */

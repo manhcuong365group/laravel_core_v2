@@ -40,7 +40,7 @@ class IndexPage extends Component
 
     public function bulkStatus(int $isActive, BulkStatusUserAction $action): void
     {
-        $this->executeBulkStatus($isActive, $action, 'người dùng');
+        $this->executeBulkStatus($isActive, $action, 'người dùng', User::class);
     }
 
     public function toggleSelectAll(): void

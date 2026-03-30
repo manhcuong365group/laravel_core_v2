@@ -5,46 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 class Attribute extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, \Spatie\Sluggable\HasSlug;
 
     protected $fillable = [
         'name',
         'slug',
-        'type',
-        'is_visible',
-        'is_filterable',
-        'order',
+        'type', // e.g. 'button', 'color', 'image', 'select'
+        'display_order'
     ];
 
-    protected $casts = [
-        'is_visible' => 'boolean',
-        'is_filterable' => 'boolean',
-    ];
-
-    public function getSlugOptions(): SlugOptions
+    public function getSlugOptions(): \Spatie\Sluggable\SlugOptions
     {
-        return SlugOptions::create()
+        return \Spatie\Sluggable\SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * Get the values for this attribute.
+     */
     public function values(): HasMany
     {
-        return $this->hasMany(AttributeValue::class)->orderBy('order');
-    }
-
-    public function scopeVisible($query)
-    {
-        return $query->where('is_visible', true);
-    }
-
-    public function scopeFilterable($query)
-    {
-        return $query->where('is_filterable', true);
+        return $this->hasMany(AttributeValue::class)->orderBy('display_order');
     }
 }

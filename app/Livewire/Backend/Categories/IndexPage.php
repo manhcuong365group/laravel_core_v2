@@ -2,12 +2,11 @@
 
 namespace App\Livewire\Backend\Categories;
 
-use App\Actions\Category\BulkDeleteCategoryAction;
-use App\Actions\Category\BulkStatusCategoryAction;
-use App\Actions\Category\DeleteCategoryAction;
-use App\Traits\WithBackendTable;
 use App\Models\Category;
+use App\Services\Category\CategoryService;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
+use App\Traits\WithBackendTable;
 
 class IndexPage extends Component
 {
@@ -22,12 +21,6 @@ class IndexPage extends Component
         'sortDirection' => ['except' => 'asc'],
     ];
 
-
-    public function toggleSelectAll(): void
-    {
-        $this->tableToggleSelectAll($this->getCategoriesQuery()->get());
-    }
-
     public function mount(string $type = 'product'): void
     {
         $this->authorize('viewAny', Category::class);
@@ -36,34 +29,81 @@ class IndexPage extends Component
         $this->sortDirection = 'asc';
     }
 
-
-    public function executeDelete(DeleteCategoryAction $deleteAction, BulkDeleteCategoryAction $bulkDeleteAction): void
-    {
-        $this->executeDeleteAction($deleteAction, $bulkDeleteAction, Category::class, 'danh mục');
-    }
-
-    public function toggleStatus(int $id, BulkStatusCategoryAction $action): void
-    {
-        $this->executeToggleStatus($id, Category::class, $action);
-    }
-
-    public function updateField(int $id, string $field, $value): void
-    {
-        $this->executeUpdateField($id, $field, $value, Category::class);
-    }
-
-    public function bulkStatus(int $isActive, BulkStatusCategoryAction $action): void
-    {
-        $this->executeBulkStatus($isActive, $action, 'danh mục');
-    }
-
-
-    protected function getCategoriesQuery()
+    #[Computed]
+    public function categories()
     {
         return Category::query()
             ->ofType($this->type)
+            ->with(['parent', 'media', 'children'])
             ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
-            ->when($this->statusFilter !== '', fn($q) => $q->where('is_active', $this->statusFilter));
+            ->when($this->statusFilter !== '', fn($q) => $q->where('is_active', $this->statusFilter))
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate($this->perPage);
+    }
+
+    public function toggleSelectAll(): void
+    {
+        $this->tableToggleSelectAll(
+            Category::ofType($this->type)->paginate($this->perPage)->items()
+        );
+    }
+
+    public function executeDelete(CategoryService $service): void
+    {
+        $this->authorize('delete', Category::class);
+
+        if ($this->selectedItems) {
+            $count = count($this->selectedItems);
+            $service->bulkDelete($this->selectedItems);
+            $this->selectedItems = [];
+            $this->notify("Đã xóa {$count} danh mục thành công.");
+        }
+    }
+
+    public function deleteCategory(int $id, CategoryService $service): void
+    {
+        $category = Category::findOrFail($id);
+        $this->authorize('delete', $category);
+
+        $service->delete($category);
+        $this->notify('Đã xóa danh mục thành công.');
+    }
+
+    public function toggleStatus(int $id, CategoryService $service): void
+    {
+        $category = Category::findOrFail($id);
+        $this->authorize('update', $category);
+
+        $service->bulkStatus([$id], !$category->is_active);
+        $this->notify('Đã cập nhật trạng thái.');
+    }
+
+    public function updateField(int $id, string $field, $value, CategoryService $service): void
+    {
+        $category = Category::findOrFail($id);
+        $this->authorize('update', $category);
+
+        $category->update([$field => $value]);
+        $this->notify('Đã cập nhật thông tin.');
+    }
+
+    public function bulkStatus(int $isActive, CategoryService $service): void
+    {
+        $this->authorize('update', Category::class);
+
+        if ($this->selectedItems) {
+            $count = count($this->selectedItems);
+            $service->bulkStatus($this->selectedItems, (bool)$isActive);
+            $this->selectedItems = [];
+            $this->notify("Đã cập nhật trạng thái cho {$count} danh mục.");
+        }
+    }
+
+    public function updateOrder(array $orders, CategoryService $service): void
+    {
+        $this->authorize('update', Category::class);
+        $service->reorder($orders);
+        $this->notify('Đã cập nhật thứ tự sắp xếp.');
     }
 
     public function getTitle(): string
@@ -78,17 +118,10 @@ class IndexPage extends Component
 
     public function render()
     {
-        $categories = $this->getCategoriesQuery()
-            ->with(['parent'])
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(20);
-
         return view('livewire.backend.categories.index-page', [
-            'categories' => $categories,
             'title' => $this->getTitle(),
         ])->layout('backend.layouts.app', [
             'title' => $this->getTitle(),
         ]);
     }
 }
-

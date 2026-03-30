@@ -2,73 +2,64 @@
 
 namespace App\Livewire\Backend\Categories;
 
-use App\Actions\Category\UpdateCategoryAction;
-use App\Data\CategoryData;
 use App\Models\Category;
-use App\Traits\WithCategoryForms;
+use App\Services\Category\CategoryService;
+use App\Data\CategoryData;
+use App\Livewire\Forms\Backend\CategoryForm;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class EditPage extends Component
 {
-    use WithFileUploads, WithCategoryForms;
+    use WithFileUploads;
 
-    public int $categoryId;
+    public CategoryForm $form;
     public ?string $currentImageUrl = null;
 
     public function mount(string $type, Category $category): void
     {
         $this->authorize('update', $category);
         
-        $this->type = $type;
-        $this->categoryId = $category->id;
-
-        $this->name = $category->name;
-        $this->slug = $category->slug;
-        $this->description = $category->description ?? '';
-        $this->parent_id = $category->parent_id;
-        $this->order = (string) ($category->order ?? '0');
-        $this->is_active = (bool) $category->is_active;
-        $this->show_in_menu = (bool) $category->show_in_menu;
-        $this->meta_title = $category->meta_title ?? '';
-        $this->meta_description = $category->meta_description ?? '';
-        $this->meta_keywords = $category->meta_keywords ?? '';
-
+        $this->form->setCategory($category);
         $this->currentImageUrl = $category->getFirstMediaUrl('image', 'thumb') ?: null;
     }
 
-    protected function rules(): array
+    public function save(CategoryService $service): void
     {
-        return $this->categoryRules($this->categoryId);
-    }
-
-    public function save(UpdateCategoryAction $action): void
-    {
-        $category = Category::findOrFail($this->categoryId);
+        $category = $this->form->category;
         $this->authorize('update', $category);
 
-        $validated = $this->validate();
+        $this->validate($this->form->rules());
 
         try {
-            $data = CategoryData::fromArray($validated);
-            $action->execute($category, $data);
+            $data = CategoryData::fromArray($this->form->all());
+            $service->update($category, $data);
 
             session()->flash('success', 'Danh mục đã được cập nhật!');
-            $this->redirect(route('backend.categories.index', $this->type), navigate: true);
+            $this->redirect(route('backend.categories.index', $this->form->type), navigate: true);
         } catch (\Throwable $e) {
             report($e);
             $this->dispatch('toast', message: 'Có lỗi xảy ra khi cập nhật danh mục!', type: 'error');
         }
     }
 
+    public function getBaseTitle(): string
+    {
+        return match ($this->form->type) {
+            'product' => 'Danh mục sản phẩm',
+            'news' => 'Danh mục tin tức',
+            'photo' => 'Album ảnh',
+            default => 'Danh mục',
+        };
+    }
+
     public function render()
     {
         return view('livewire.backend.categories.edit-page', [
-            'parentCategories' => $this->getParentCategories($this->categoryId),
-            'pageTitle' => $this->getTitle('Sửa'),
-            'pageIcon' => $this->getIcon(),
+            'parentCategories' => $this->form->getParentCategories(),
+            'title' => 'Sửa ' . mb_strtolower($this->getBaseTitle()),
         ])->layout('backend.layouts.app', [
-            'title' => $this->getTitle('Sửa'),
+            'title' => 'Sửa ' . mb_strtolower($this->getBaseTitle()),
         ]);
     }
 }

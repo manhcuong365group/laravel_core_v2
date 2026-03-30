@@ -6,6 +6,8 @@ use App\Data\CategoryData;
 use App\Models\Category;
 use App\Services\Media\MediaService;
 
+use Illuminate\Support\Facades\DB;
+
 class UpdateCategoryAction
 {
     public function __construct(
@@ -14,10 +16,14 @@ class UpdateCategoryAction
 
     public function execute(Category $category, CategoryData $data): Category
     {
-        $category->update($data->toArray());
+        return DB::transaction(function () use ($category, $data) {
+            $category->update($data->toArray());
 
-        $this->mediaService->uploadSingle($category, $data->image, 'image');
+            if ($data->image) {
+                $this->mediaService->uploadSingle($category, $data->image, 'image');
+            }
 
-        return $category;
+            return $category;
+        });
     }
 }

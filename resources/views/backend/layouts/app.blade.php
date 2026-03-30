@@ -93,6 +93,13 @@
     <!-- CKEditor 4 -->
     <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
+    <!-- Cropper.js for MaryUI crop -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+
+    <!-- SortableJS for Drag & Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .custom-scrollbar::-webkit-scrollbar {
@@ -158,6 +165,7 @@
         <div x-show="configOpen" x-cloak class="fixed inset-0 z-60"></div>
 
         <!-- Components -->
+        <x-mary-toast />
         @include('backend.layouts.partials.toast')
         @include('backend.layouts.partials.command-palette')
         @include('backend.layouts.partials.theme-configurator')

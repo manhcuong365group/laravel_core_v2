@@ -24,6 +24,8 @@ class ProductData extends BaseData
         public ?string $meta_title = null,
         public ?string $meta_description = null,
         public ?string $meta_keywords = null,
+        public bool $has_variants = false,
+        public array $variants = [],
         public mixed $featured_image = null,
         public mixed $gallery = [],
     ) {}
@@ -44,7 +46,7 @@ class ProductData extends BaseData
     {
         $data = parent::toArray();
 
-        unset($data['featured_image'], $data['gallery']);
+        unset($data['featured_image'], $data['gallery'], $data['has_variants'], $data['variants']);
 
         return $data;
     }

@@ -134,8 +134,12 @@ trait WithBackendTable
     /**
      * Standard implementation for bulk status updates.
      */
-    public function executeBulkStatus(int $isActive, mixed $action, string $label = 'mục'): void
+    public function executeBulkStatus(int $isActive, mixed $action, string $label = 'mục', string $modelClass = null): void
     {
+        if ($modelClass) {
+            \Illuminate\Support\Facades\Gate::authorize('update', $modelClass);
+        }
+
         if (empty($this->selectedItems)) {
             $this->notify("Vui lòng chọn ít nhất một {$label}.", 'warning');
             return;
@@ -181,6 +185,7 @@ trait WithBackendTable
     public function executeDeleteAction(mixed $deleteAction, mixed $bulkDeleteAction, mixed $model, string $label = 'mục'): void
     {
         if ($this->isBulkDelete) {
+            \Illuminate\Support\Facades\Gate::authorize('delete', $model);
             if (empty($this->selectedItems)) return;
             $bulkDeleteAction->execute($this->selectedItems);
             $this->notify("Đã xóa vĩnh viễn các {$label} được chọn thành công.");
