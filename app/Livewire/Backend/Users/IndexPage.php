@@ -35,60 +35,17 @@ class IndexPage extends Component
 
     public function executeDelete(DeleteUserAction $singleAction, BulkDeleteUserAction $bulkAction): void
     {
-        if ($this->isBulkDelete) {
-            $this->authorize('delete', User::class);
-            if (empty($this->selectedItems)) return;
-
-            $ids = collect($this->selectedItems)->map(fn($id) => (int) $id)->toArray();
-            $count = $bulkAction->execute($ids);
-
-            if ($count === 0) {
-                $this->notify('Không thể xóa chính tài khoản của bạn.', 'error');
-            } else {
-                $this->notify("Đã xóa {$count} người dùng đã chọn.");
-                $this->resetTableState();
-            }
-        } else {
-            if ($this->deleteTargetId) {
-                $user = User::findOrFail($this->deleteTargetId);
-                $this->authorize('delete', $user);
-                
-                if (!$singleAction->execute($user)) {
-                    $this->notify('Không thể xóa tài khoản của chính mình!', 'error');
-                } else {
-                    $this->notify('Xóa người dùng thành công.');
-                    $this->resetTableState();
-                }
-            }
-        }
+        $this->executeDeleteAction($singleAction, $bulkAction, User::class, 'người dùng');
     }
 
     public function bulkStatus(int $isActive, BulkStatusUserAction $action): void
     {
-        $this->authorize('update', User::class);
-
-        if (empty($this->selectedItems)) {
-            $this->notify('Vui lòng chọn ít nhất một người dùng.', 'warning');
-            return;
-        }
-
-        $ids = collect($this->selectedItems)->map(fn($id) => (int) $id)->toArray();
-        $updated = $action->execute($ids, (bool) $isActive);
-
-        if ($updated === 0) {
-             $this->notify('Không có người dùng hợp lệ để cập nhật.', 'error');
-        } else {
-             $this->notify("Đã cập nhật trạng thái {$updated} người dùng.");
-             $this->resetTableState();
-        }
+        $this->executeBulkStatus($isActive, $action, 'người dùng', User::class);
     }
 
     public function toggleSelectAll(): void
     {
-        $items = $this->getUsersQuery()
-            ->limit(100)
-            ->get();
-
+        $items = $this->getUsersQuery()->limit(100)->get();
         $this->tableToggleSelectAll($items);
     }
 

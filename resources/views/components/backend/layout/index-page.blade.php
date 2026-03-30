@@ -62,8 +62,11 @@
                                 type="text"
                                 wire:model.live.debounce.400ms="search"
                                 placeholder="{{ $searchPlaceholder }}"
-                                class="w-full pl-12 pr-4 h-12 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium text-text-main placeholder-text-muted/50 focus:ring-4 focus:ring-primary/10 focus:border-primary/50 transition-all outline-none"
+                                class="w-full pl-12 pr-12 h-12 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium text-text-main placeholder-text-muted/50 focus:ring-4 focus:ring-primary/10 focus:border-primary/50 transition-all outline-none"
                             >
+                            <div wire:loading wire:target="search" class="absolute inset-y-0 right-4 flex items-center">
+                                <i class="ti ti-loader-2 animate-spin text-primary"></i>
+                            </div>
                         </div>
                     @endif
 

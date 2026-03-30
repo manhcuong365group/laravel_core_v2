@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\HasMedia;
@@ -16,7 +18,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, HasSlug, InteractsWithMedia;
+    use HasFactory, SoftDeletes, HasSlug, InteractsWithMedia, LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'sku', 'price', 'sale_price', 'stock_status', 'stock_quantity', 'is_active', 'is_featured', 'category_id', 'brand_id'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->setDescriptionForEvent(fn (string $eventName) => "Sản phẩm đã được {$eventName}");
+    }
 
     protected $fillable = [
         'name',
@@ -64,10 +75,9 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Brand::class);
     }
 
-    public function attributeValues(): BelongsToMany
+    public function variants(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(AttributeValue::class, 'product_attribute_values')
-            ->withPivot('price_adjustment');
+        return $this->hasMany(ProductVariant::class);
     }
 
     public function tags(): BelongsToMany

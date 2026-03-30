@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "3.3.0"
+  },
+  "project": {
+    "name": "laravel_v2",
+    "type": "Laravel Monolith Admin App",
+    "status": "development"
+  },
+  "tech_stack": {
+    "backend": {
+      "framework": "Laravel 11",
+      "language": "PHP 8.2+"
+    },
+    "frontend": {
+      "framework": "Livewire 3 + Alpine.js + Tailwind CSS",
+      "ui": "Blade Components"
+    },
+    "database": {
+      "engine": "MySQL / PostgreSQL",
+      "orm": "Eloquent"
+    }
+  },
+  "database_schema": {
+    "summary": "Lưu thông tin products, articles, categories, users, orders, brands."
+  },
+  "api_endpoints": [],
+  "business_rules": [],
+  "features": [
+    "Quản lý bài viết (Articles)",
+    "Quản lý sản phẩm (Products - Pro Max)",
+    "Quick View Product (Preview Frontend)",
+    "Inline Status Toggles (Active & Featured)",
+    "Quản lý danh mục (Categories)",
+    "Quản lý đơn hàng (Orders)",
+    "Lưu trữ lịch sử thao tác (Activity Log)"
+  ],
+  "knowledge_items": {
+    "patterns": [
+      "Sử dụng #[Computed] attribute để chống N+1 trên Livewire v3",
+      "Sử dụng Glassmorphism + Bento Grid (Pro Max UI) thông qua app.css utilities (glass-card, shadow-glow-*) làm chủ đạo cho giao diện.",
+      "Mô hình SRE: DTO-based + Service-driven + Livewire Form Object (Chuẩn Product Pro Max).",
+      "Fix Select Dropdown Transparency: Sử dụng !important background-color + shadow-lg cho .mary-select-content để đảm bảo tính nhất quán trên Windows/Chrome."
+    ],
+    "gotchas": [
+      "Cần chống XSS trên DTO do các block editor không tự động lọc script tag",
+      "Cần luôn kèn authorize() vào Bulk Actions trong Trait dùng chung.",
+      "Hover scale-1.x và translate-x trên bảng (table) dễ gây ra lỗi layout shift/horizontal scroll jitter do trình duyệt tính toán lại viewport."
+    ],
+    "conventions": [
+      "Tách riêng Data Transfer Object (DTO) cho Form Request",
+      "Sử dụng Service/Action Layer để xử lý logic DB & Media",
+      "Sử dụng Livewire Form Object class thay vì Trait.",
+      "Nút thao tác (Action button) nên được hiển thị mờ (opacity-30) thay vì ẩn hẳn (opacity-0) để tăng độ ổn định layout và cải thiện UX định vị."
+    ]
+  }
+}

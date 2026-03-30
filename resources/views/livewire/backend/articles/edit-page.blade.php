@@ -1,31 +1,28 @@
-<div>
-    @section('title', $pageTitle ?? 'Edit Article')
-
-    <div class="space-y-6">
-        @include('backend.layouts.partials.breadcrumbs', [
-            'items' => [
-                ['label' => 'Articles', 'url' => route('backend.articles.index', $type)],
-                ['label' => 'Edit'],
-            ],
-        ])
-
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-2xl font-black text-text-main tracking-tight">{{ $pageTitle ?? 'Edit Article' }}</h1>
-                <p class="text-sm text-text-muted mt-1">Edit {{ $type }} content.</p>
-            </div>
-            <x-backend.ui.button type="outline" :href="route('backend.articles.index', $type)">Back</x-backend.ui.button>
+<div class="space-y-8 pb-32">
+    <!-- Header Section -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-black text-text-main tracking-tight uppercase tracking-[0.1em]">{{ $pageTitle }}</h1>
+            <p class="text-[11px] font-black text-text-muted mt-1 uppercase tracking-widest opacity-60">Chỉnh sửa nội dung và cấu hình xuất bản bài viết.</p>
         </div>
-
-        <form wire:submit="save" class="space-y-6">
-            @include('livewire.backend.articles._form')
-
-            <div class="flex items-center justify-end gap-2">
-                <x-backend.ui.button type="outline" :href="route('backend.articles.index', $type)">Cancel</x-backend.ui.button>
-                <x-backend.ui.button type="primary" htmlType="submit">Update {{ ucfirst($type) }}</x-backend.ui.button>
-            </div>
-        </form>
+        <x-backend.ui.button variant="neutral" :href="route('backend.articles.index', $type)" icon="ti ti-arrow-left" class="rounded-2xl font-black text-[10px] uppercase tracking-widest bg-white/5 border-white/10 hover:bg-white/10">
+            Quay lại danh sách
+        </x-backend.ui.button>
     </div>
+
+    <form wire:submit="save" class="space-y-8">
+        @include('livewire.backend.articles._form')
+
+        <!-- Sticky Action Bar -->
+        <x-admin.sticky-bar
+            cancelHref="{{ route('backend.articles.index', $type) }}"
+            target="save, featured_image"
+            saveLabel="Cập nhật bài viết"
+            mode="Edit"
+        >
+            <x-slot:info>
+                <span class="text-[13px] font-bold text-text-main truncate max-w-[180px]" x-data="{ title: $wire.entangle('title') }" x-text="title || 'Đang chỉnh sửa...'"></span>
+            </x-slot:info>
+        </x-admin.sticky-bar>
+    </form>
 </div>
-
-

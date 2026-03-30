@@ -6,144 +6,65 @@ use App\Actions\Brand\BulkDeleteBrandAction;
 use App\Actions\Brand\BulkStatusBrandAction;
 use App\Actions\Brand\DeleteBrandAction;
 use App\Models\Brand;
+use App\Traits\WithBackendTable;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class IndexPage extends Component
 {
-    use WithPagination;
-
-    public string $search = '';
-    public string $sortField = 'order';
-    public string $sortDirection = 'asc';
-    public array $selectedItems = [];
-    public bool $selectAll = false;
-
-    public bool $showDeleteModal = false;
-    public ?int $deleteTargetId = null;
-    public string $deleteTargetName = '';
+    use WithBackendTable;
 
     protected $queryString = [
-        'search' => ['except' => ''],
+        'search'        => ['except' => ''],
+        'statusFilter'  => ['except' => '', 'as' => 'status'],
+        'sortField'     => ['except' => 'order'],
+        'sortDirection' => ['except' => 'asc'],
     ];
 
     public function mount(): void
     {
         $this->authorize('viewAny', Brand::class);
-    }
-
-    public function updatingSearch(): void
-    {
-        $this->resetPage();
-    }
-
-    public function sortBy(string $field): void
-    {
-        if ($this->sortField === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-            return;
-        }
-
-        $this->sortField = $field;
+        $this->sortField = 'order';
         $this->sortDirection = 'asc';
-    }
-
-    public function confirmDelete(int $id, string $name): void
-    {
-        $this->deleteTargetId = $id;
-        $this->deleteTargetName = $name;
-        $this->showDeleteModal = true;
-    }
-
-    public function deleteBrand(DeleteBrandAction $action): void
-    {
-        if ($this->deleteTargetId) {
-            $brand = Brand::find($this->deleteTargetId);
-            if ($brand) {
-                $this->authorize('delete', $brand);
-                $action->execute($brand);
-            }
-        }
-
-        $this->showDeleteModal = false;
-        $this->deleteTargetId = null;
-        $this->deleteTargetName = '';
-        $this->dispatch('toast', message: 'Xóa thương hiệu thành công.', type: 'success');
-    }
-
-    public function deleteSelected(BulkDeleteBrandAction $action): void
-    {
-        $this->authorize('delete', Brand::class);
-
-        if (empty($this->selectedItems)) {
-            return;
-        }
-
-        $count = $action->execute($this->selectedItems);
-        $this->selectedItems = [];
-        $this->selectAll = false;
-
-        $this->dispatch('toast', message: "Đã xóa {$count} thương hiệu đã chọn.", type: 'success');
-    }
-
-    public function bulkStatus(int $isActive, BulkStatusBrandAction $action): void
-    {
-        $this->authorize('update', Brand::class);
-
-        if (empty($this->selectedItems)) {
-            return;
-        }
-
-        $count = $action->execute($this->selectedItems, (bool) $isActive);
-
-        $this->selectedItems = [];
-        $this->selectAll = false;
-
-        $this->dispatch('toast', message: "Đã cập nhật trạng thái {$count} thương hiệu.", type: 'success');
     }
 
     public function toggleSelectAll(): void
     {
-        if ($this->selectAll) {
-            $this->selectedItems = [];
-            $this->selectAll = false;
-            return;
-        }
-
-        $this->selectedItems = $this->getBrandsQuery()
-            ->pluck('id')
-            ->map(fn($id) => (string) $id)
-            ->toArray();
-        $this->selectAll = true;
+        $this->tableToggleSelectAll($this->getBrandsQuery()->get());
     }
 
-    public function updatedSelectedItems(): void
+    public function executeDelete(DeleteBrandAction $deleteAction, BulkDeleteBrandAction $bulkDeleteAction): void
     {
-        $selectedCount = count($this->selectedItems);
+        $this->executeDeleteAction($deleteAction, $bulkDeleteAction, Brand::class, 'thương hiệu');
+    }
 
-        if ($selectedCount === 0) {
-            $this->selectAll = false;
-            return;
-        }
+    public function toggleStatus(int $id, BulkStatusBrandAction $action): void
+    {
+        $this->executeToggleStatus($id, Brand::class, $action);
+    }
 
-        $totalFiltered = (clone $this->getBrandsQuery())->count();
-        $this->selectAll = $selectedCount === $totalFiltered;
+    public function bulkStatus(int $isActive, BulkStatusBrandAction $action): void
+    {
+        $this->executeBulkStatus($isActive, $action, 'thương hiệu');
+    }
+
+    public function updateField(int $id, string $field, $value): void
+    {
+        $this->executeUpdateField($id, $field, $value, Brand::class);
     }
 
     private function getBrandsQuery()
     {
         return Brand::query()
-            ->when($this->search, function ($query) {
-                $query->where('name', 'like', "%{$this->search}%")
-                    ->orWhere('website', 'like', "%{$this->search}%");
-            });
+            ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%")
+                ->orWhere('website', 'like', "%{$this->search}%"))
+            ->when($this->statusFilter !== '', fn($q) => $q->where('is_active', $this->statusFilter));
     }
 
     public function render()
     {
         $brands = $this->getBrandsQuery()
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(20);
+            ->paginate($this->perPage);
 
         return view('livewire.backend.brands.index-page', [
             'brands' => $brands,
@@ -152,4 +73,3 @@ class IndexPage extends Component
         ]);
     }
 }
-

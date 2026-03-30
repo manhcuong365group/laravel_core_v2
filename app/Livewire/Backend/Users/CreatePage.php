@@ -6,21 +6,13 @@ use App\Actions\User\CreateUserAction;
 use App\Data\UserData;
 use App\Models\User;
 use App\Models\Role;
+use App\Traits\WithUserForms;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Validation\Rule;
 
 class CreatePage extends Component
 {
-    use WithFileUploads;
-
-    public string $name = '';
-    public string $email = '';
-    public string $password = '';
-    public string $password_confirmation = '';
-    public array $selectedRoles = [];
-    public bool $is_active = true;
-    public $avatar;
+    use WithFileUploads, WithUserForms;
 
     public function mount(): void
     {
@@ -29,35 +21,26 @@ class CreatePage extends Component
 
     protected function rules(): array
     {
-        return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'selectedRoles' => 'array',
-            'selectedRoles.*' => 'exists:roles,name',
-            'is_active' => 'boolean',
-            'avatar' => 'nullable|image|max:2048',
-        ];
+        return $this->userRules();
     }
 
     public function save(CreateUserAction $action)
     {
-        $this->validate();
+        $validated = $this->validate();
 
-        $data = new UserData(
-            name: $this->name,
-            email: $this->email,
-            password: $this->password,
-            roles: $this->selectedRoles,
-            is_active: $this->is_active,
-            avatar: $this->avatar
-        );
+        try {
+            // Map selectedRoles to roles for DTO consistency
+            $validated['roles'] = $this->selectedRoles;
+            
+            $data = UserData::fromArray($validated);
+            $action->execute($data);
 
-        $action->execute($data);
-
-        $this->dispatch('toast', message: 'Người dùng đã được tạo thành công!', type: 'success');
-
-        return redirect()->route('backend.users.index');
+            session()->flash('success', 'Người dùng đã được tạo thành công!');
+            $this->redirect(route('backend.users.index'), navigate: true);
+        } catch (\Throwable $e) {
+            report($e);
+            $this->dispatch('toast', message: 'Có lỗi xảy ra khi tạo người dùng!', type: 'error');
+        }
     }
 
     public function render()
@@ -71,5 +54,3 @@ class CreatePage extends Component
         ]);
     }
 }
-
-

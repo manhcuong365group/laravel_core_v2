@@ -1,0 +1,50 @@
+{
+  "updated_at": "2026-03-30T09:40:00Z",
+  "working_on": {
+    "feature": "Product Index UX & UI Optimization",
+    "status": "completed",
+    "tasks": [
+      "Fix Layout Shift / Horizontal Scroll Jitter trên bảng Sản phẩm",
+      "Triển khai Inline Toggle cho trạng thái Nổi bật",
+      "Thêm nút Xem nhanh (Quick Preview) Frontend",
+      "Xử lý lỗi hển thị (trong suốt, mất chữ) của bộ lọc Sản phẩm"
+    ],
+    "notes": "Trang Index Sản phẩm hiện đã đạt chuẩn UX/UI theo phong cách Pro Max v2. Giao diện ổn định, tốc độ phản hồi Toggle nhanh."
+  },
+  "pending_tasks": [
+    {
+      "task": "Refactor module Sản phẩm sang chuẩn Service Layer/DTO",
+      "priority": "high",
+      "notes": "Cần dọn dẹp logic từ IndexPage Controller sang ProductService"
+    },
+    {
+      "task": "Đồng bộ giao diện Pro Max cho module Bài viết",
+      "priority": "medium"
+    }
+  ],
+  "recent_changes": [
+    {
+      "timestamp": "2026-03-30T09:35:00Z",
+      "type": "feat",
+      "description": "Product Index UI/UX Optimization (Stable Layout, Quick Actions, Fixed Selects)",
+      "files": [
+        "resources/views/livewire/backend/products/index-page.blade.php",
+        "CHANGELOG.md"
+      ]
+    }
+  ],
+  "decisions_made": [
+    {
+      "decision": "Loại bỏ Hover Scale và Translate trên Table Rows",
+      "reason": "Khắc phục lỗi thanh cuộn ngang nhảy múa do trình duyệt tính toán lại kích thước Viewport."
+    },
+    {
+      "decision": "Hiển thị Action mờ (opacity-30) thay vì ẩn hẳn",
+      "reason": "Đảm bảo layout không bị thay đổi và giúp người dùng định vị nút bấm nhanh hơn."
+    },
+    {
+      "decision": "Sử dụng CSS Inject cho component Mary Select",
+      "reason": "Vá lỗi hiển thị dropdown Options bị trong suốt trên Google Chrome (Windows Desktop)."
+    }
+  ]
+}

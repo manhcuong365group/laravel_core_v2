@@ -6,16 +6,50 @@
     'deleteAction' => null,
     'removeTempAction' => null,
     'hint' => '',
+    'gridClass' => 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
 ])
 
 <div class="space-y-4">
     <label class="block text-sm font-semibold text-text-main mb-2 tracking-tight">{{ $label }}</label>
     
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+    <div 
+        x-data="{
+            sortable: null,
+            init() {
+                if (!this.$refs.sortableContainer) return;
+                this.sortable = new Sortable(this.$refs.sortableContainer, {
+                    animation: 350,
+                    ghostClass: 'opacity-20',
+                    chosenClass: 'scale-95',
+                    dragClass: 'shadow-2xl',
+                    filter: '.upload-trigger',
+                    onEnd: (evt) => {
+                        const items = Array.from(evt.to.children)
+                            .filter(el => el.dataset.id)
+                            .map((el, index) => ({
+                                id: el.dataset.id,
+                                position: index + 1
+                            }));
+                        
+                        if (items.length > 0 && '{{ $attributes->get('wire:sort') }}') {
+                            $wire.call('{{ $attributes->get('wire:sort') }}', items);
+                        }
+                    }
+                });
+            }
+        }"
+        x-ref="sortableContainer"
+        class="grid {{ $gridClass }} gap-4">
         {{-- Existing Images (from Spatie Media Library) --}}
         @foreach($currentImages as $media)
-            <div class="relative group aspect-square rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-                <img src="{{ $media->getUrl('thumb') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div data-id="{{ $media->id }}" class="relative group aspect-square rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-500 hover:scale-[1.02] cursor-grab active:cursor-grabbing">
+                <img src="{{ $media->getUrl('thumb') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                
+                {{-- Drag Handle Overlay --}}
+                <div class="absolute top-2 left-2 w-8 h-8 rounded-xl bg-black/40 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <x-mary-icon name="o-arrows-pointing-out" class="w-4 h-4 text-white/70" />
+                </div>
+
                 <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-3 backdrop-blur-sm">
                     @if($deleteAction)
                         <button type="button" 
@@ -29,12 +63,12 @@
             </div>
         @endforeach
 
-        {{-- Temporary Uploaded Images --}}
+        {{-- Temporary Uploaded Images (Not sortable until saved) --}}
         @if($multiple)
             @if(is_array($model) || $model instanceof \Illuminate\Support\Collection)
                 @foreach($model as $index => $tempImage)
                     @if($tempImage instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-                        <div class="relative group aspect-square rounded-3xl overflow-hidden border border-primary/30 bg-primary/5 shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-primary/5 animate-in zoom-in duration-300">
+                        <div class="upload-trigger relative group aspect-square rounded-3xl overflow-hidden border border-primary/30 bg-primary/5 shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-primary/5 animate-in zoom-in duration-300">
                             <img src="{{ $tempImage->temporaryUrl() }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             <div class="absolute top-2 right-2 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest shadow-lg shadow-primary/40">Mới</div>
                             <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
@@ -50,7 +84,7 @@
             @endif
         @else
             @if($model instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
-                <div class="relative group aspect-square rounded-3xl overflow-hidden border border-primary/30 bg-primary/5 shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-primary/5 animate-in zoom-in duration-300">
+                <div class="upload-trigger relative group aspect-square rounded-3xl overflow-hidden border border-primary/30 bg-primary/5 shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-primary/5 animate-in zoom-in duration-300">
                     <img src="{{ $model->temporaryUrl() }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm font-black">
                         <button type="button" 
@@ -67,7 +101,7 @@
         @if(!$multiple && $model)
             {{-- Hide upload if single and already have model --}}
         @else
-            <div {{ $attributes->merge(['class' => 'relative group aspect-square rounded-3xl border-2 border-dashed border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-primary/50 transition-all duration-500 flex flex-col items-center justify-center gap-3 cursor-pointer overflow-hidden shadow-inner']) }}>
+            <div {{ $attributes->except('wire:sort')->merge(['class' => 'upload-trigger relative group aspect-square rounded-3xl border-2 border-dashed border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-primary/50 transition-all duration-500 flex flex-col items-center justify-center gap-3 cursor-pointer overflow-hidden shadow-inner']) }}>
                 <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-text-muted transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/10 group-hover:text-primary group-hover:rotate-6 border border-white/5">
                     <i class="ti ti-photo-plus text-3xl opacity-40 group-hover:opacity-100 transition-opacity"></i>
                 </div>

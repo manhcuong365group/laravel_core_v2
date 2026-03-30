@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             SeoPageSeeder::class,
             AdminPhaseOneMenuSeeder::class,
             LayoutBuilderMenuSeeder::class,
+            AttributeSeeder::class,
         ]);
 
         // Create default Tenant for localhost

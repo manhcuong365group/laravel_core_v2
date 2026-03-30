@@ -9,10 +9,15 @@ use App\Actions\Product\CopyProductAction;
 use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Attributes\Computed;
+use Livewire\WithFileUploads;
+use App\Livewire\Forms\Backend\ProductForm;
 
 class IndexPage extends Component
 {
-    use \App\Traits\WithBackendTable;
+    use \App\Traits\WithBackendTable, WithFileUploads;
+
+    public ProductForm $form;
 
     public function mount(): void
     {
@@ -28,14 +33,40 @@ class IndexPage extends Component
         'sortDirection' => ['except' => 'desc'],
     ];
 
-    public ?string $brandFilter = null;
+    public ?int $brandFilter = null;
+    
+    // Quick Edit Drawer State
+    public bool $showQuickDrawer = false;
+    public array $editingProduct = [
+        'id' => null,
+        'name' => '',
+        'sku' => '',
+        'price' => '0',
+        'sale_price' => '0',
+        'stock_quantity' => 0,
+        'is_active' => true,
+        'has_variants' => false,
+    ];
 
-    /**
-     * Get the products query for the table.
-     */
-    public function getProductsQuery()
+    public $importFile;
+    public bool $importModal = false;
+
+    #[Computed]
+    public function categories()
     {
-        return Product::with(['category', 'brand'])
+        return Category::ofType('product')->active()->orderBy('name')->get();
+    }
+
+    #[Computed]
+    public function brands()
+    {
+        return \App\Models\Brand::active()->orderBy('name')->get();
+    }
+
+    #[Computed]
+    public function products()
+    {
+        return Product::with(['category', 'brand', 'media'])
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->where('name', 'like', "%{$this->search}%")
@@ -45,12 +76,13 @@ class IndexPage extends Component
             ->when($this->categoryFilter, fn($query) => $query->where('category_id', $this->categoryFilter))
             ->when($this->brandFilter, fn($query) => $query->where('brand_id', $this->brandFilter))
             ->when($this->statusFilter !== '', fn($query) => $query->where('is_active', $this->statusFilter))
-            ->orderBy($this->sortField, $this->sortDirection);
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate($this->perPage);
     }
 
     public function toggleSelectAll(): void
     {
-        $this->tableToggleSelectAll($this->getProductsQuery()->get());
+        $this->tableToggleSelectAll(collect(Product::query()->paginate($this->perPage)->items()));
     }
 
     public function executeDelete(DeleteProductAction $deleteAction, BulkDeleteProductAction $bulkDeleteAction): void
@@ -92,26 +124,80 @@ class IndexPage extends Component
 
     public function bulkStatus(int $isActive, BulkStatusProductAction $action): void
     {
-        $this->executeBulkStatus($isActive, $action, 'sản phẩm');
+        $this->executeBulkStatus($isActive, $action, 'sản phẩm', Product::class);
+    }
+
+    public function editProduct(int $id): void
+    {
+        $product = Product::findOrFail($id);
+        $this->form->setProduct($product);
+        $this->editingProduct = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'sku' => $product->sku,
+            'price' => $product->price ? number_format((float) $product->price, 0, '', '.') : '0',
+            'sale_price' => $product->sale_price ? number_format((float) $product->sale_price, 0, '', '.') : '',
+            'stock_quantity' => $product->stock_quantity,
+            'is_active' => (bool) $product->is_active,
+            'has_variants' => $product->variants()->count() > 0,
+        ];
+        $this->showQuickDrawer = true;
+    }
+
+    public function updateQuickEdit(): void
+    {
+        $product = Product::findOrFail($this->editingProduct['id']);
+        $this->authorize('update', $product);
+
+        // Sync values from local editing state to form
+        $this->form->price = $this->editingProduct['price'];
+        $this->form->sale_price = $this->editingProduct['sale_price'];
+        $this->form->stock_quantity = (string)$this->editingProduct['stock_quantity'];
+        $this->form->is_active = $this->editingProduct['is_active'];
+
+        $this->form->normalizeMoney();
+        $this->validate($this->form->getRules());
+
+        $product->update([
+            'price' => $this->form->price,
+            'sale_price' => $this->form->sale_price,
+            'stock_quantity' => $this->form->stock_quantity,
+            'is_active' => $this->form->is_active,
+        ]);
+
+        $this->showQuickDrawer = false;
+        $this->notify('Đã cập nhật sản phẩm nhanh thành công.');
+    }
+
+    public function exportExcel()
+    {
+        $this->authorize('viewAny', Product::class);
+
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\ProductsExport, 'danh-sach-san-pham.xlsx');
+    }
+
+    public function importExcel()
+    {
+        $this->authorize('update', Product::class);
+
+        $this->validate([
+            'importFile' => 'required|mimes:xlsx,xls,csv|max:10240',
+        ]);
+
+        try {
+            \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\ProductsImport, $this->importFile->getRealPath());
+            
+            $this->importModal = false;
+            $this->importFile = null;
+            $this->dispatch('toast', message: 'Nhập dữ liệu thành công!', type: 'success');
+        } catch (\Exception $e) {
+            $this->dispatch('toast', message: 'Lỗi: ' . $e->getMessage(), type: 'error');
+        }
     }
 
     public function render()
     {
-        $products = $this->getProductsQuery()->paginate($this->perPage);
-
-        $categories = Category::ofType('product')
-            ->active()
-            ->orderBy('name')
-            ->get();
-
-        $brands = \App\Models\Brand::active()
-            ->orderBy('name')
-            ->get();
-
         return view('livewire.backend.products.index-page', [
-            'products' => $products,
-            'categories' => $categories,
-            'brands' => $brands,
             'title' => 'Quản lý sản phẩm',
         ])->layout('backend.layouts.app', [
             'title' => 'Quản lý sản phẩm',

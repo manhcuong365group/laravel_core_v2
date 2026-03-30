@@ -1,176 +1,258 @@
-<div class="space-y-6">
-    <div class="flex items-center justify-between">
+<div>
+    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-text-main tracking-tight uppercase tracking-[0.1em]">{{ $pageTitle }}</h1>
-            <p class="text-[11px] font-black text-text-muted mt-1 uppercase tracking-widest opacity-60">Thêm sản phẩm mới vào hệ thống quản trị.</p>
+            <h1 class="text-3xl font-black tracking-tight text-text-main flex items-center gap-3">
+                <span class="bg-gradient-to-br from-primary to-accent w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-glow-primary rotate-3">
+                    <x-mary-icon name="o-plus-circle" class="w-7 h-7" />
+                </span>
+                <div>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Thêm Sản Phẩm Mới</span>
+                    <div class="text-sm font-medium text-text-muted mt-1">Khởi tạo một mặt hàng mới vào hệ thống</div>
+                </div>
+            </h1>
         </div>
-        <x-backend.ui.button variant="neutral" :href="route('backend.products.index')" icon="ti ti-arrow-left" class="rounded-2xl font-black text-[10px] uppercase tracking-widest">
-            Quay lại
-        </x-backend.ui.button>
+        <div class="flex items-center gap-3">
+            <x-mary-button label="Huỷ bỏ" icon="o-x-mark" link="{{ route('backend.products.index') }}" class="btn-ghost" />
+            <x-mary-button label="Tạo Sản Phẩm ✨" icon="o-sparkles" class="btn-primary shadow-glow-primary px-8" wire:click="save" spinner="save" />
+        </div>
     </div>
 
-    <form wire:submit="save" class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
-        <!-- Main Bento Content Area -->
-        <div class="xl:col-span-8 space-y-8 h-full">
-            
-            <!-- SECTION 1: CƠ BẢN -->
-            <x-backend.layout.card title="Thông tin cơ bản" class="shadow-2xl shadow-black/20 border-white/[0.03]">
-                <div class="space-y-6">
-                    <x-backend.forms.input wire:model.blur="name" name="name" label="Tên sản phẩm" required placeholder="Nhập tên sản phẩm..." class="text-lg font-bold" />
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <x-backend.forms.input wire:model="slug" name="slug" label="Slug" placeholder="tu-dong-tao-tu-ten..." hint="Dùng cho đường dẫn URL" />
-                        <x-backend.forms.input wire:model="sku" name="sku" label="Mã SKU (Bắt buộc)" required placeholder="PROD-001..." />
+    <x-mary-form wire:submit="save">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Cột chính (8/12) -->
+            <div class="lg:col-span-8 space-y-8">
+                <!-- Thông tin cốt lõi -->
+                <div class="glass-card p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <x-mary-icon name="o-rocket-launch" class="w-32 h-32" />
                     </div>
-
-                    <x-backend.forms.textarea wire:model="short_description" name="short_description" label="Mô tả ngắn" rows="3" placeholder="Tóm tắt ngắn gọn về sản phẩm (hiển thị ở trang danh sách)..." />
                     
-                    <div class="space-y-2">
-                        <label class="block text-sm font-semibold text-text-main tracking-tight">Nội dung chi tiết</label>
-                        <div wire:ignore class="rounded-3xl overflow-hidden border border-white/5 shadow-inner">
-                            <textarea wire:model="content" id="editor" class="editor w-full px-5 py-4 bg-white/[0.02] text-text-main focus:bg-white/[0.05] transition-all duration-500 outline-none" rows="15"></textarea>
+                    <h2 class="text-xl font-bold mb-8 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                            <x-mary-icon name="o-identification" class="w-6 h-6" />
+                        </span>
+                        Thông tin định danh
+                    </h2>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <div class="md:col-span-3">
+                                <x-mary-input label="Tên sản phẩm *" wire:model.blur="form.name" placeholder="Ví dụ: iPhone 15 Pro Max" class="input-lg font-bold" required />
+                            </div>
+                            <x-mary-input label="Mã SKU *" wire:model="form.sku" placeholder="SKU-..." required />
                         </div>
-                        @error('content') <p class="text-[10px] font-black text-danger mt-1 uppercase tracking-widest">{{ $message }}</p> @enderror
+                        
+                        <x-mary-input label="Slug thương mại" wire:model="form.slug" prefix="shop.com/p/" placeholder="tu-dong-tao" hint="Đường dẫn tĩnh chuẩn SEO" />
+
+                        <x-mary-textarea label="Mô tả tóm tắt" wire:model="form.short_description" rows="2" placeholder="Hiển thị ở trang danh sách..." />
+                        
+                        <div wire:ignore class="space-y-2">
+                            <label class="text-sm font-bold text-text-muted flex items-center gap-2">
+                                <x-mary-icon name="o-pencil-square" class="w-4 h-4" />
+                                Nội dung chi tiết
+                            </label>
+                            <div class="rounded-xl overflow-hidden border border-border-glass focus-within:ring-2 ring-primary/20 transition-all">
+                                <textarea id="content" class="editor w-full" wire:model="form.content" rows="10"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </x-backend.layout.card>
 
-            <!-- SECTION 2: BENTO GRID (PRICE & KHO) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- GIÁ BÁN -->
-                <x-backend.layout.card title="Định giá sản phẩm" class="h-full border-primary/10 shadow-lg shadow-primary/5">
-                    <div class="space-y-6">
-                        <x-backend.forms.input wire:model="price" name="price" label="Giá gốc (VNĐ)" type="text" inputmode="numeric" required
-                            x-on:input="$event.target.value = (($event.target.value || '').replace(/[^0-9]/g, '')).replace(/\B(?=(\d{3})+(?!\d))/g, '.')" 
-                            class="text-xl font-bold text-primary" />
+                <!-- Định giá & Kho hàng -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Định giá -->
+                    <div class="glass-card p-8 border-l-4 border-l-success">
+                        <h2 class="text-xl font-bold mb-8 flex items-center gap-3 text-success">
+                            <x-mary-icon name="o-currency-dollar" class="w-6 h-6" />
+                            Giá bán (VNĐ)
+                        </h2>
                         
-                        <x-backend.forms.input wire:model="sale_price" name="sale_price" label="Giá khuyến mãi (VNĐ)" type="text" inputmode="numeric"
-                            x-on:input="$event.target.value = (($event.target.value || '').replace(/[^0-9]/g, '')).replace(/\B(?=(\d{3})+(?!\d))/g, '.')" 
-                            hint="Để trống nếu không giảm giá" />
-                        
-                        <div class="p-4 rounded-2xl bg-primary/5 border border-primary/10 flex items-center gap-3">
-                            <i class="ti ti-info-circle text-primary text-xl"></i>
-                            <p class="text-[10px] text-primary/70 font-bold uppercase tracking-wider leading-relaxed">
-                                Giá khuyến mãi phải thấp hơn giá gốc để hiển thị nhãn "SALE".
-                            </p>
+                        <div class="space-y-6">
+                            <x-mary-input 
+                                label="Giá niêm yết *" 
+                                wire:model.blur="form.price" 
+                                prefix="đ" 
+                                class="text-2xl font-black text-success"
+                                x-on:input="$el.value = String($el.value).replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                            />
+                            <x-mary-input 
+                                label="Giá ưu đãi" 
+                                wire:model.blur="form.sale_price" 
+                                prefix="đ" 
+                                hint="Bỏ trống nếu giữ giá gốc" 
+                                class="text-xl font-bold"
+                                x-on:input="$el.value = String($el.value).replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                            />
                         </div>
                     </div>
-                </x-backend.layout.card>
 
-                <!-- KHO HÀNG -->
-                <x-backend.layout.card title="Quản lý kho hàng" class="h-full">
-                    <div class="space-y-6">
-                        <x-backend.forms.input wire:model="stock_quantity" name="stock_quantity" label="Số lượng trong kho" type="number" min="0" class="text-xl font-bold" />
+                    <!-- Kho hàng (Nếu không có biến thể) -->
+                    @if(!$has_variants)
+                    <div class="glass-card p-8 border-l-4 border-l-info">
+                        <h2 class="text-xl font-bold mb-8 flex items-center gap-3 text-info">
+                            <x-mary-icon name="o-cube" class="w-6 h-6" />
+                            Quản lý kho
+                        </h2>
                         
-                        <x-backend.forms.select wire:model="stock_status" label="Trạng thái tồn kho" :options="[
-                            'in_stock' => '✅ Còn hàng (Sẵn sàng bán)',
-                            'out_of_stock' => '❌ Hết hàng (Tạm ngưng nhận đơn)',
-                            'on_backorder' => '⏳ Đặt trước (Cho phép mua khi hết)',
-                        ]" class="font-bold" />
-
-                        <div class="grid grid-cols-1 gap-4 opacity-50 italic">
-                             <p class="text-[10px] font-black text-text-muted uppercase tracking-widest">Hệ thống sẽ tự động trừ kho khi có đơn hàng mới.</p>
+                        <div class="space-y-6">
+                            <x-mary-input label="Số lượng sẵn có" wire:model="form.stock_quantity" type="number" min="0" class="text-xl font-bold" required />
+                            <x-mary-select label="Trạng thái hàng" wire:model="form.stock_status" :options="collect([
+                                ['id' => 'in_stock', 'name' => '📦 Còn hàng'],
+                                ['id' => 'out_of_stock', 'name' => '❌ Hết hàng'],
+                                ['id' => 'on_backorder', 'name' => '⏳ Cho phép đặt trước'],
+                            ])" />
                         </div>
                     </div>
-                </x-backend.layout.card>
+                    @endif
+                </div>
+
+                <!-- BIẾN THỂ SẢN PHẨM (Variants Matrix) -->
+                <div class="glass-card p-8 relative overflow-hidden group border-t-4 border-t-primary">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="text-xl font-bold flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                                <x-mary-icon name="o-swatch" class="w-6 h-6" />
+                            </span>
+                            Biến thể sản phẩm
+                        </h2>
+                        <x-mary-toggle wire:model.live="has_variants" label="Có nhiều phiên bản?" class="toggle-primary" />
+                    </div>
+
+                    @if($has_variants)
+                        <div class="space-y-8 animate-in fade-in slide-in-from-top-4 duration-500">
+                            <!-- Attribute Selection -->
+                            <div class="bg-base-200/50 rounded-3xl p-6 border border-border-glass space-y-6">
+                                <p class="text-sm font-medium text-text-muted italic">Chọn các thuộc tính (Màu sắc, Size...) để tự động tạo ma trận phiên bản:</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    @foreach($this->allAttributes as $attribute)
+                                        <div class="space-y-3">
+                                            <label class="block text-sm font-black uppercase tracking-widest text-primary">{{ $attribute->name }}</label>
+                                            <div class="flex flex-wrap gap-2">
+                                                @foreach($attribute->values as $value)
+                                                    <label class="cursor-pointer group">
+                                                        <input type="checkbox" wire:model.live="selected_attributes.{{ $attribute->id }}.{{ $value->id }}" value="{{ $value->id }}" class="hidden peer">
+                                                        <span class="px-4 py-2 rounded-full border border-border-glass bg-white/5 text-sm font-bold transition-all 
+                                                            peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-glow-primary
+                                                            group-hover:border-primary/50">
+                                                            {{ $value->value }}
+                                                        </span>
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <!-- Variants Tables -->
+                            @if(count($variants) > 0)
+                                <div class="overflow-hidden rounded-3xl border border-border-glass bg-base-100/30">
+                                    <table class="table w-full">
+                                        <thead class="bg-base-200/50 text-xs uppercase font-bold tracking-widest">
+                                            <tr>
+                                                <th class="py-4">Phiên bản</th>
+                                                <th>Mã SKU</th>
+                                                <th>Giá chênh lệch</th>
+                                                <th>Tồn kho</th>
+                                                <th class="w-20">Bật</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($variants as $index => $variant)
+                                                <tr wire:key="v-{{ $variant['key'] }}" class="hover:bg-white/5 border-b border-white/5 transition-colors">
+                                                    <td class="font-bold text-primary">{{ $variant['name'] }}</td>
+                                                    <td>
+                                                        <x-mary-input wire:model="variants.{{ $index }}.sku" class="input-sm rounded-lg" />
+                                                    </td>
+                                                    <td>
+                                                        <x-mary-input wire:model="variants.{{ $index }}.price" prefix="đ" class="input-sm rounded-lg font-bold" />
+                                                    </td>
+                                                    <td>
+                                                        <x-mary-input wire:model="variants.{{ $index }}.stock" type="number" class="input-sm rounded-lg" />
+                                                    </td>
+                                                    <td>
+                                                        <x-mary-toggle wire:model="variants.{{ $index }}.is_active" class="toggle-xs toggle-success" />
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="py-12 text-center bg-base-200/30 rounded-3xl border-2 border-dashed border-border-glass">
+                                    <x-mary-icon name="o-information-circle" class="w-10 h-10 mx-auto mb-3 opacity-20" />
+                                    <p class="text-text-muted font-medium">Vui lòng chọn ít nhất một giá trị thuộc tính để bắt đầu.</p>
+                                </div>
+                            @endif
+                        </div>
+                    @else
+                        <div class="py-10 text-center text-text-muted opacity-50 italic">
+                            Sản phẩm này hiện đang được thiết lập là "Sản phẩm đơn nhất" (không có biến thể).
+                        </div>
+                    @endif
+                </div>
             </div>
 
-            <!-- SECTION 3: SEO -->
-            <x-backend.layout.card title="Cấu hình SEO (Search Engine Optimization)">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Cột bên phải/Floating Window (4/12) -->
+            <div class="lg:col-span-4 space-y-8 sticky top-24">
+                <!-- Phân loại & Hiển thị -->
+                <div class="glass-card p-6 shadow-xl space-y-8 border-t-4 border-t-accent">
+                    <div>
+                        <h2 class="text-lg font-black mb-6 uppercase tracking-widest text-text-muted flex items-center gap-2">
+                            <x-mary-icon name="o-adjustments-horizontal" class="w-5 h-5" />
+                            Cấu hình hiển thị
+                        </h2>
+                        
+                        <div class="bg-base-200/50 rounded-2xl p-4 space-y-4 border border-border-glass">
+                            <x-mary-toggle label="Mở bán công khai" wire:model="form.is_active" class="toggle-success" />
+                            <div class="h-px bg-border-glass !my-2"></div>
+                            <x-mary-toggle label="Sản phẩm nổi bật (Vip)" wire:model="form.is_featured" class="toggle-warning" />
+                        </div>
+                    </div>
+
                     <div class="space-y-6">
-                        <x-backend.forms.input wire:model="meta_title" name="meta_title" label="SEO Title" placeholder="Tên sản phẩm | Tên cửa hàng..." hint="Tốt nhất dưới 60 ký tự" />
-                        <x-backend.forms.input wire:model="meta_keywords" name="meta_keywords" label="SEO Keywords" placeholder="iphone 15, dien thoai, apple..." hint="Phân cách bằng dấu phẩy" />
-                    </div>
-                    <div class="space-y-2">
-                         <label class="block text-sm font-semibold text-text-main tracking-tight">SEO Description</label>
-                         <textarea wire:model="meta_description" class="w-full px-4 py-3 rounded-2xl border border-white/5 bg-white/5 text-text-main focus:ring-1 focus:ring-primary/50 transition-all outline-none" rows="5" placeholder="Mô tả hiển thị trên Google (Tốt nhất dưới 160 ký tự)..."></textarea>
-                         <p class="text-[10px] font-black text-text-muted/40 uppercase tracking-widest text-right">0/160</p>
+                        <x-mary-select label="Danh mục chính" icon="o-folder" wire:model="form.category_id" :options="$this->categories" placeholder="-- Phân loại --" required />
+                        <x-mary-select label="Nhãn hàng/Brand" icon="o-sparkles" wire:model="form.brand_id" :options="$this->brands" placeholder="-- Thương hiệu --" />
+                        <x-mary-input label="Thứ tự ưu tiên" wire:model="form.order" type="number" hint="Số nhỏ sẽ lên đầu trang" />
                     </div>
                 </div>
-            </x-backend.layout.card>
-        </div>
 
-        <!-- Sidebar Bento Area -->
-        <div class="xl:col-span-4 space-y-8">
-            
-            <!-- MEDIA (THUMBNAIL) -->
-            <x-backend.layout.card title="Ảnh đại diện" class="overflow-visible">
-                <x-backend.forms.media-uploader 
-                    wire:model="featured_image"
-                    :model="$featured_image"
-                    removeTempAction="removeFeaturedImage"
-                    label=""
-                    hint="Kích thước khuyên dùng: 800x800px (1:1)"
-                />
-            </x-backend.layout.card>
-
-            <!-- MEDIA (GALLERY) -->
-            <x-backend.layout.card title="Thư viện ảnh">
-                <x-backend.forms.media-uploader 
-                    wire:model="gallery"
-                    :model="$gallery"
-                    multiple
-                    removeTempAction="removeGalleryImage"
-                    label=""
-                    hint="Chọn nhiều ảnh để tạo slideshow sản phẩm"
-                />
-            </x-backend.layout.card>
-
-            <!-- PHÂN LOẠI -->
-            <x-backend.layout.card title="Phân loại & Thương hiệu">
-                <div class="space-y-6">
-                    <x-backend.forms.select wire:model="category_id" label="Danh mục chính" :options="$categories->pluck('name', 'id')->all()" placeholder="-- Chọn danh mục --" required class="font-bold" />
-                    <x-backend.forms.select wire:model="brand_id" label="Thương hiệu" :options="$brands->pluck('name', 'id')->all()" placeholder="-- Chọn thương hiệu --" class="font-bold" />
-                </div>
-            </x-backend.layout.card>
-
-            <!-- TRẠNG THÁI -->
-            <x-backend.layout.card title="Trạng thái hiển thị">
-                <div class="space-y-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="flex flex-col items-center justify-center gap-3 p-5 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/[0.08] hover:border-primary/20 transition-all cursor-pointer group shadow-inner">
-                            <input type="checkbox" wire:model="is_active" class="w-6 h-6 rounded-lg border-white/10 text-primary focus:ring-primary/30 bg-white/5 transition-all">
-                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted group-hover:text-primary transition-colors">Hiển thị</span>
-                        </label>
-                        <label class="flex flex-col items-center justify-center gap-3 p-5 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/[0.08] hover:border-primary/20 transition-all cursor-pointer group shadow-inner">
-                            <input type="checkbox" wire:model="is_featured" class="w-6 h-6 rounded-lg border-white/10 text-primary focus:ring-primary/30 bg-white/5 transition-all">
-                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted group-hover:text-warning transition-colors">Nổi bật</span>
-                        </label>
-                    </div>
+                <!-- Media Center -->
+                <div class="glass-card p-6 shadow-2xl space-y-6 overflow-hidden">
+                    <h2 class="text-lg font-black uppercase tracking-widest text-text-muted flex items-center gap-2">
+                        <x-mary-icon name="o-photo" class="w-5 h-5 text-error" />
+                        Media Center
+                    </h2>
                     
-                    <x-backend.forms.input wire:model="order" name="order" label="Thứ tự ưu tiên" type="number" hint="Số nhỏ hơn sẽ hiển thị trước" />
-                </div>
-            </x-backend.layout.card>
+                    <div class="space-y-8">
+                        <x-backend.forms.media-uploader 
+                            wire:model="form.featured_image" 
+                            label="Ảnh đại diện" 
+                            :multiple="false"
+                            :model="$form->featured_image"
+                            removeTempAction="form.removeFeaturedImage"
+                            gridClass="grid-cols-1"
+                        />
 
-            <!-- PUBLISH ACTION -->
-            <div class="xl:sticky xl:bottom-8 z-20">
-                <div class="relative group">
-                    <div class="absolute -inset-[2px] bg-gradient-to-r from-primary via-blue-500 to-primary rounded-[2.5rem] opacity-30 group-hover:opacity-100 blur-md transition-opacity duration-1000 animate-pulse pointer-events-none"></div>
-                    <button type="submit" 
-                        wire:loading.attr="disabled" 
-                        wire:target="save, featured_image, gallery" 
-                        class="relative w-full px-8 py-6 flex items-center justify-center gap-3 rounded-[2.5rem] bg-bg-surface border border-white/10 hover:bg-white/5 text-text-main font-black text-xl uppercase tracking-[0.1em] transition-all duration-500 active:scale-[0.98]">
-                        
-                        <span wire:loading.remove wire:target="save">
-                            <i class="ti ti-rocket text-2xl text-primary animate-bounce-slow"></i> XÁC NHẬN PHÁT HÀNH
-                        </span>
-                        
-                        <span wire:loading wire:target="save" class="flex items-center gap-3 text-primary">
-                            <i class="ti ti-loader-2 animate-spin text-2xl"></i> ĐANG KHỞI TẠO...
-                        </span>
-                        
-                        <span wire:loading wire:target="featured_image, gallery" class="flex items-center gap-3 text-warning">
-                            <i class="ti ti-cloud-upload animate-bounce text-2xl"></i> ĐANG TẢI MEDIA...
-                        </span>
-                    </button>
+                        <div class="h-px bg-border-glass"></div>
+
+                        <x-backend.forms.media-uploader 
+                            wire:model="form.gallery" 
+                            label="Thư viện ảnh" 
+                            :multiple="true"
+                            :model="$form->gallery"
+                            removeTempAction="form.removeGalleryImage"
+                            gridClass="grid-cols-2 lg:grid-cols-3"
+                        />
+                    </div>
                 </div>
-                
-                <p class="text-center mt-4 text-[9px] font-black text-text-muted/40 uppercase tracking-[0.3em] font-mono italic">
-                    All changes are verified by security agent v2.5
-                </p>
+
+                <!-- Create Action Floating -->
+                <div class="glass-card p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+                    <x-mary-button label="Xác Nhận Tạo Mới ✨" icon="o-rocket-launch" class="btn-primary shadow-glow-primary w-full h-14 text-lg font-black" wire:click="save" spinner="save" />
+                </div>
             </div>
         </div>
-    </form>
+    </x-mary-form>
 </div>
-

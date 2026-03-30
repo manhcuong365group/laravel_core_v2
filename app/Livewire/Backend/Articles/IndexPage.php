@@ -6,6 +6,8 @@ use App\Actions\Article\BulkDeleteArticleAction;
 use App\Actions\Article\BulkStatusArticleAction;
 use App\Actions\Article\DeleteArticleAction;
 use App\Models\Article;
+use App\Models\Category;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,6 +20,7 @@ class IndexPage extends Component
     protected $queryString = [
         'search' => ['except' => ''],
         'statusFilter' => ['except' => '', 'as' => 'status'],
+        'categoryFilter' => ['except' => '', 'as' => 'category'],
     ];
 
     public function mount(string $type = 'post'): void
@@ -92,7 +95,9 @@ class IndexPage extends Component
         return Article::query()
             ->where('type', $this->type)
             ->when($this->search, fn($query) => $query->where('title', 'like', "%{$this->search}%"))
-            ->when($this->statusFilter, fn($query) => $query->where('status', $this->statusFilter));
+            ->when($this->statusFilter !== '', fn($query) => $query->where('status', $this->statusFilter))
+            ->when($this->categoryFilter, fn($query) => $query->where('category_id', $this->categoryFilter))
+            ->orderBy($this->sortField, $this->sortDirection);
     }
 
     public function getTitle(): string
@@ -106,15 +111,21 @@ class IndexPage extends Component
         };
     }
 
+    #[Computed]
+    public function categories()
+    {
+        return Category::where('type', $this->type)->get();
+    }
+
     public function render()
     {
         $articles = $this->getArticlesQuery()
             ->with(['category', 'author'])
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(20);
+            ->paginate($this->perPage);
 
         return view('livewire.backend.articles.index-page', [
             'articles' => $articles,
+            'categories' => $this->categories,
             'title' => $this->getTitle(),
         ])->layout('backend.layouts.app', [
             'title' => $this->getTitle(),
